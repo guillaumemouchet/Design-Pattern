@@ -5,7 +5,7 @@ Equipe 04 : M. Guillaume Mouchet, M. Nicolas Aubert, M. Alexandre Besia<br>
 -------------*/
 
 ## 1. Structure source
-La strucuture de base vu en cours pour ce projet etait sans bridge, en utilisant la spécialisation de classes et les principes de l'héritage.
+La structure de base vue en cours pour ce projet était sans bridge, en utilisant la spécialisation de classes et les principes de l'héritage.
 
 ## 2. Amélioration possibles
 Le problème de la structure de base de ce projet est qu'il y a beaucoup trop de classe et d'héritage, on voit que toutes les classes V1 ressemble complétement aux V2, et niveau optimisation de code et de temps de travail c'est pas pratique.<br>
