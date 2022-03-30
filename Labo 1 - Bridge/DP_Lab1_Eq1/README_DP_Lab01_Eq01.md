@@ -1,7 +1,7 @@
 /*-------------<br>
 Design Patterns<br>
 Labo 01<br>
-Equipe 04 : M. Guillaume Mouchet, M. Nicolas Aubert, M. Alexandre Besia<br>
+Equipe 01 : M. Guillaume Mouchet, M. Nicolas Aubert, M. Alexandre Besia<br>
 -------------*/
 
 ## 1. Structure source
