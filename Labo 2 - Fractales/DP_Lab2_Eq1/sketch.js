@@ -4,6 +4,7 @@ let depthSlider;
 let maxLenSlider;
 let animCheckbox;
 let treesNumberInput;
+let maxChildsSlider;
 
 let maxDepth;
 let maxLen;
@@ -13,7 +14,7 @@ let childProba = 0.5;
 let anim = true;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
   angleMode(DEGREES);
 
   // Paragraph for the depth value
@@ -21,6 +22,12 @@ function setup() {
   // Slider for the depth value
   depthSlider = createSlider(1, 10, 5);
   depthSlider.input(generateTrees);
+
+  // Paragraph for the max childs value
+  pMaxChilds = createP("Max childs : 4");
+  // Create slider for the max childs value
+  maxChildsSlider = createSlider(1, 7, 4);
+  maxChildsSlider.input(generateTrees);
 
   // Paragraph for the maximum length
   pMaxLen = createP("Max len : 50");
@@ -30,16 +37,16 @@ function setup() {
 
   // Input for the number of trees
   treesNumberInput = createInput("3");
-  treesNumberInput.position(150, 500);
+  treesNumberInput.position(150, height + 100);
   treesNumberInput.size(100);
   treesNumberInput.input(generateTrees);
   // Paragraph for the number of trees
   pTreesNumber = createP("Number of trees :");
-  pTreesNumber.position(150, 450);
+  pTreesNumber.position(150, height + 50);
 
   // Checkbox to toogle the animation
   animCheckbox = createCheckbox("Animation?", true);
-  animCheckbox.position(150, 420);
+  animCheckbox.position(150, height + 20);
 
   // Generate trees
   generateTrees();
@@ -68,6 +75,7 @@ function generateTrees() {
   // Get values from sliders
   maxDepth = depthSlider.value();
   maxLen = maxLenSlider.value();
+  maxChilds = maxChildsSlider.value();
 
   let nbOfTrees = int(treesNumberInput.value());
 
@@ -76,6 +84,7 @@ function generateTrees() {
   // Display values in paragraphes
   pMaxLen.html("Max len : " + maxLen + "px");
   pDepth.html("Depth value : " + maxDepth);
+  pMaxChilds.html("Max childs : " + maxChilds);
 
   roots = []; // Clear the array of roots
 
@@ -91,7 +100,7 @@ function generateTrees() {
     );
     
     roots.push(
-      new Branch(createVector(currentStep, 0), 0, 0, round(random(0, 2)), leafCol)
+      new Branch(createVector(currentStep, 0), 0, round(random(0, 2)), leafCol)
     );
   }
 }

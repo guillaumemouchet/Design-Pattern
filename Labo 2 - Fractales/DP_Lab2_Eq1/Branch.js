@@ -1,9 +1,9 @@
 class Branch extends Component {
-  constructor(pos, angle, depth, myColor, leafColor) {
+  constructor(pos, depth, myColor, leafColor) {
     super(pos); // Call the parent constructor
 
     this.depth = depth;
-    this.angle = angle;
+    this.angle = 0;
     this.leafColor = leafColor;
 
     // Create empty array that will contains childrens
@@ -49,6 +49,8 @@ class Branch extends Component {
     if (this.depth >= maxDepth) this.childs.push(new Leaf(this.endPos, leafColor));
     // Else, create childrens
     else this.createChilds();
+
+    this.update();
   }
 
   draw() {
@@ -83,7 +85,6 @@ class Branch extends Component {
         this.childs.push(
           new Branch(
             this.endPos,
-            this.angle + random(-40, 40),
             this.depth + 1,
             this.myColor,
             this.leafColor
