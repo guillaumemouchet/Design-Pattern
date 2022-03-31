@@ -27,12 +27,39 @@ Si aucune branche n'est créée, ou que la profondeur maximale est atteinte (ég
 
 
 ## 3. Le DP
+Le singleton est un design pattern dont l'objectif est de limiter le nombre d'instance d'une classe. Générallement le singleton limite le nombre d'instance à 1, mais il est possible de le limiter à n'importe quel valeure arbitraire (3 dans notre cas)
 
-### 3.1 Faiblesses
+
+### 3.1 Faiblesses Singleton
+Utiliser un singleton complique les tests unitaires. Le couplage entre une classe et un singleton est, du fait que le singleton introduit des états globaux à l'application, un couplage fort. Ce couplage fort empêche les tests unitaires sur une classe seule, on se retrouve à tester la classe et son singleton. 
+
+Utiliser un singleton a tendance à cacher les dépendances. Habituellement, quand une classe a besoin d'une ressource externe c'est immédiatement visible. Mais dans le cas d'un singleton, quand une classe l'appel, ça ne se voit pas directement dans le constructeur ou les méthodes.
+
+Si on créer un singleton avec la méthode populaire de lazy loading 
+
+```CPP
+public static Singleton getInstance() {
+    if (instance == null) {
+        instance = new Singleton();
+    }
+    return instance;
+} 
+```
+il est possible de se retrouver avec plusieurs instances de singleton dans le cas où plusieurs thread accèdent en parallèle à la méthode getInstance()
 
 
-### 3.2 Forces
+### 3.2 Forces Singleton
+Un singleton peut servir à coordiner un programme autour d'une unique instance. Par exemple la gameloop d'un jeu est souvent un singleton car on a besoin d'une seule boucle pour tout le jeu.
 
+Une autre force du singleton est son efficacité. En limitant le nombre d'instance en mémoire et en forçant tout le monde à référer à cette unique instance (au lieu d'avoir chaque utilisateur qui créer une nouvelle instance). Ceci économise de la place en mémoire en évitant la redondance.
+
+Le singleton a aussi l'avantage de n'être instancié que quand il est nécessaire (lazy loading).
+
+Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un service. Par exemple si l'utilisateur est connecté sur un site et qu'il appuis de nouveau sur le bouton connecter, le singleton de connexion étant déjà instancié, l'utilisateur ne sera pas déconnecté
+
+### 3.3 Faiblesses Composite
+
+### 3.4 Forces Composite
 
 
 ## 4. Conclusion
