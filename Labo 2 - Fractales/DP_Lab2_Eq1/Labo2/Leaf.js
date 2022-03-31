@@ -5,6 +5,7 @@ class Leaf extends Component {
   }
 
   draw() {
+    // Draw a circle
     this.drawer.drawCircle(this.pos, 5, this.col);
   }
   update() {}

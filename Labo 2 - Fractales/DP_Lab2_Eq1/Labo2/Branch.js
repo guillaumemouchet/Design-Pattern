@@ -1,5 +1,5 @@
 class Branch extends Component {
-  constructor(pos, depth, myColor, leafColor) {
+  constructor(pos, depth, branchColor, leafColor) {
     super(pos); // Call the parent constructor
 
     this.depth = depth;
@@ -14,9 +14,9 @@ class Branch extends Component {
     // Get random starting noise number (to avoid same movements pattern between differents branches)
     this.noise = random(-1000, 1000);
     
-    // Set the color depending of the value of 'myColor'
-    this.myColor = myColor;
-    switch (myColor) {
+    // Set the color depending of the value of 'branchColor'
+    this.branchColor = branchColor;
+    switch (branchColor) {
       case 0:
         this.col = color(
           255,
@@ -46,7 +46,7 @@ class Branch extends Component {
     this.calculateEndPosition();
 
     // If the max depth is reached, create a Leaf
-    if (this.depth >= maxDepth) this.childs.push(new Leaf(this.endPos, leafColor));
+    if (this.depth >= maxDepth) this.childs.push(new Leaf(this.endPos, this.leafColor));
     // Else, create childrens
     else this.createChilds();
 
@@ -86,7 +86,7 @@ class Branch extends Component {
           new Branch(
             this.endPos,
             this.depth + 1,
-            this.myColor,
+            this.branchColor,
             this.leafColor
           )
         );

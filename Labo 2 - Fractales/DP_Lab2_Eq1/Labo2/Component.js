@@ -2,18 +2,21 @@
 
 class Component {
   constructor(pos) {
+    // If the class that is instanciated is Component, throw an exception
     if (this.constructor == Component) {
       throw new TypeError(
         'Abtract class "Component" cannot be instantiated directly.'
       );
     }
 
+    // If draw is not implemented, throw an exeption
     if (this.draw === undefined) {
       throw new TypeError(
         'Classes extending the abstract class "Component" must contain "draw()"'
       );
     }
 
+    // If update is not implemented, throw an exception
     if (this.update === undefined) {
       throw new TypeError(
         'Classes extending the abstract class "Component" must contain "update()"'
