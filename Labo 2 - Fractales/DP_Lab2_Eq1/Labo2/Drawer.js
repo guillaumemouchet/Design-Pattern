@@ -1,3 +1,6 @@
+/**
+ * This class may be used to draw lines and circles
+ */
 class Drawer {
   drawLine(pos1, pos2, color, strokeW){
     // Change the color
