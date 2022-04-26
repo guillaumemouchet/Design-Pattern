@@ -25,14 +25,14 @@ public:
     }
 
     void AfficherFruits() override {
-        cout << "Panier[";
+        cout << "Panier[" << endl;
 
         for (ComposantPanier * enfant : enfants) {
             enfant->AfficherFruits();
-            if(enfants.back() != enfant) cout << ", ";
+            if(enfants.back() != enfant) cout << ", " << endl;
         }
 
-        cout << "]";
+        cout << "]" << endl;
     }
 
     bool AvecOuSansPepin() override

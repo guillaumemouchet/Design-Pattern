@@ -18,6 +18,7 @@ int main(int argc, char const *argv[])
     DecorateurComposantPanierEgal * banane = new DecorateurComposantPanierEgal(new Fruit("Banane", false));
 
     DecorateurComposantPanierSharp * panier1 = new DecorateurComposantPanierSharp(new Panier());
+    DecorateurComposantPanierStar * panier1m2 = new DecorateurComposantPanierStar(panier1);
 
     Fruit * fraise = new Fruit("Fraise", false);
     Fruit * avocat = new Fruit("Avocat", true);
@@ -26,7 +27,7 @@ int main(int argc, char const *argv[])
     panier1->AjouterComposant(avocat);
 
     panierRacine->AjouterComposant(banane);
-    panierRacine->AjouterComposant(panier1);
+    panierRacine->AjouterComposant(panier1m2);
 
     panierRacine->AfficherFruits();
 

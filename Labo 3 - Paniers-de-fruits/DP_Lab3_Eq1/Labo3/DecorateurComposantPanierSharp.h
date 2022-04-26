@@ -14,9 +14,8 @@ public:
     }
 
     void AfficherFruits() override {
-        cout << endl << "################" << endl;
+        cout << "################" << endl;
         this->composant->AfficherFruits();
-        cout << (this->composant->AvecOuSansPepin() ? " avec pépin" : " sans pépin") << endl;
-        cout         << "################" << endl;
+        cout << "################" << endl;
     }
 };

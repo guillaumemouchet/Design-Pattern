@@ -18,7 +18,7 @@ public:
 
     void AfficherFruits() override
     {
-        cout << this->nom;
+        cout << this->nom << " - " << (this->pepin ? " avec pépin" : " sans pépin") << endl;
     }
 
     bool AvecOuSansPepin() override
