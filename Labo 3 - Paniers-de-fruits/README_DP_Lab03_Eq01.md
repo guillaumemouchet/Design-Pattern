@@ -7,7 +7,7 @@ Equipe 01 : M. Guillaume Mouchet, M. Nicolas Aubert, M. Alexandre Besia<br>
 ## 1. Structure source
 Le but de ce projet est de créer trois design pattern différents, le composite, le state et le decorator, puis de les mettres ensemble pour les utiliser sur un panier de fruits et simuler une commande d'un panier de fruit puis de son affichage suivant les envies de l'utilisateur.
 ## 2. Amélioration possibles
-
+Une amélioration possible de notre programme est sur l'affichage en passant une profondeur aux fruits et paniers pour faire une indentation plus représentative.
 ## 3. Les DPs
 
 ### 3.1 Le composite
