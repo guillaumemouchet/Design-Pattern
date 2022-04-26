@@ -60,10 +60,10 @@ int main(int argc, char const *argv[])
 
     // Afficher le panier
     panierRacine->AfficherFruits();
-    cout << endl << boolalpha << "Avec ou sans pépin ? " << panierRacine->AvecOuSansPepin() << endl;
+    cout << "Ce panier " << (panierRacine->AvecOuSansPepin() ? "comporte des " : "ne comporte pas de ") << "fruits avec pépins" << endl;
 
     // Supprimer les pointeurs
-    delete panierRacine;
+    delete panierRacine; // Un panier s'occupe de supprimer tous les éléments qu'il contient
     delete context;
 
     return 0;
