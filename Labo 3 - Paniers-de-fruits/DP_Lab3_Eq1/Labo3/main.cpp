@@ -83,7 +83,7 @@ char chooseDecorator()
         cout << "Veuillez selectionner votre décorateur" << endl;
         cout << "[0] =" << endl;
         cout << "[1] #" << endl;
-        cout << "[2] * " << endl;
+        cout << "[2] *" << endl;
         cout << "[3] None" << endl;
         cout << "======================================= " << endl;
 

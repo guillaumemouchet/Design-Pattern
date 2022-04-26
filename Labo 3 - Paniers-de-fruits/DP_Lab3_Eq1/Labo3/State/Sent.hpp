@@ -18,7 +18,7 @@ public:
     }
     string getName()
     {
-        return "Sent";
+        return "envoyée";
     }
 };
 #endif

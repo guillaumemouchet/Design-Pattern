@@ -4,13 +4,13 @@
 #include <iostream>
 
 #include "composantPanier.h"
-
+#include "fruit.h"
 using namespace std;
 
 class Panier : public ComposantPanier
 {
 protected:
-    list<ComposantPanier *> enfants;
+    list<ComposantPanier *> enfants; 
 
 public:
     Panier() : ComposantPanier() {}
@@ -30,11 +30,11 @@ public:
     {
         cout << "Panier[" << endl << endl;
 
-        for (ComposantPanier *enfant : enfants)
+        for (auto *enfant : enfants)
         {
             enfant->AfficherFruits();
             if (enfants.back() != enfant)
-                cout << /*", " <<*/ endl;
+                cout << endl;
         }
 
         cout << "]" << endl;

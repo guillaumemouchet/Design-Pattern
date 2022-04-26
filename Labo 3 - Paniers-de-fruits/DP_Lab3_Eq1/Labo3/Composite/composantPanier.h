@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+//ComposantPanier est une calsse virtuelle pure, comme ça elle ne peut pas être crée.
 class ComposantPanier
 {
 public:

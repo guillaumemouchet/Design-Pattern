@@ -20,7 +20,7 @@ public:
 
     string getName()
     {
-        return "Paid";
+        return "payée";
     }
 };
 #endif

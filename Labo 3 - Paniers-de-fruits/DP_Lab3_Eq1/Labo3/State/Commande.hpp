@@ -31,6 +31,7 @@ public:
         this->state = state;
         this->state->setCommande(this); //On set chaque état à la même commande
     }
+    
     //TraiterCommande appelera la même méthode mais cela dépendera de la classe effective
     void TraiterCommande()
     {
