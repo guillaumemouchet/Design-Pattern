@@ -46,14 +46,16 @@ Les différents décorateurs peuvent être ajouté dans n'importe quel ordre et 
 Comme on peut ajouter autant de décorateur que l'on veut sur un objet, on peut se servir de ce principe pour combiner des effets.   
 
 ### 3.3 Le state
-
+Le state est un design pattern qui permet de modifier le comportement d'un objet selon un état interne qu'il lui à été défini, on symbolise une sorte de changement de classe.
 ### 3.3.1 Faiblesses state
-- Pas pratique si nous n'avons que de très peu d'états ou peu de transitions.
+Peu utile dans le cas ou il n'y a que peu d'états différents ou de transition à effectuer.
 ### 3.3.2 Forces state
-- L'organisation du code lié aux différents états se fait dans des classes séparés, ce qui permet d'éviter d'énormes <i>switch</i> ou suite de <i>if</i>.
-- L'ajout de nouveaux états peut se faire sans modifier les états ou le contexte existants.
-## 4. Conclusion
+Le code est lié aux différents états dans des classes uniques et séparées, donc plusieurs programmeur peuvent créer leur classes pour fonctionner sur le même objet.
+Il est possible de facilement ajouter des nouveaux états sans modifier les anciennes ni modifier le contexte.
+L'organisation du code lié aux différents états se fait dans des classes séparés, ce qui permet d'éviter d'énormes <i>switch</i> ou suite de <i>if</i>.
 
+## 4. Conclusion
+//TODO
 ## 5. Sources
 
 Pour les points forts et faibles du Composite:
