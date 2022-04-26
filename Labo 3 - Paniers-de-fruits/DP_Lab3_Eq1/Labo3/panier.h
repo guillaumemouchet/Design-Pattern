@@ -29,6 +29,7 @@ public:
 
         for (ComposantPanier * enfant : enfants) {
             enfant->AfficherFruits();
+            if(enfants.back() != enfant) cout << ", ";
         }
 
         cout << "]";

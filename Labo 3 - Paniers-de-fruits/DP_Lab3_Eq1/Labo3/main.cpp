@@ -10,14 +10,23 @@
 
 int main(int argc, char const *argv[])
 {
-    Panier * panier = new Panier();
+    Panier * panierRacine = new Panier();
 
     Fruit * banane = new Fruit("Banane", false);
 
-    panier->AjouterComposant(banane);
+    Panier * panier1 = new Panier();
 
-    panier->AfficherFruits();
+    Fruit * fraise = new Fruit("Fraise", false);
+    Fruit * avocat = new Fruit("Avocat", true);
 
-    cout << boolalpha << panier->AvecOuSansPepin() << endl;
+    panier1->AjouterComposant(fraise);
+    panier1->AjouterComposant(avocat);
+
+    panierRacine->AjouterComposant(banane);
+    panierRacine->AjouterComposant(panier1);
+
+    panierRacine->AfficherFruits();
+
+    cout << endl << boolalpha << "Avec ou sans pépin ? " << panierRacine->AvecOuSansPepin() << endl;
     return 0;
 }
