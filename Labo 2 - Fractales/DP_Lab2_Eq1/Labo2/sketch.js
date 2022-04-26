@@ -14,7 +14,7 @@ let childProba = 0.5;
 let anim = true;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800, 600);
   angleMode(DEGREES);
 
   // Paragraph for the depth value

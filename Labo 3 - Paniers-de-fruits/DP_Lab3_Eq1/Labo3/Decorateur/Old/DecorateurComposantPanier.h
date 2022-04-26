@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "composantPanier.h"
+#include "../../Composite/composantPanier.h"
 
 class DecorateurComposantPanier : public ComposantPanier
 {

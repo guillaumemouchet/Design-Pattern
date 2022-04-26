@@ -9,12 +9,13 @@ using namespace std;
 class Fruit : public ComposantPanier
 {
 public:
-    Fruit(string nom, bool pepin = false) : ComposantPanier() {
+    Fruit(string nom, bool pepin = false) : ComposantPanier()
+    {
         this->nom = nom;
         this->pepin = pepin;
     }
 
-    ~Fruit() { }
+    ~Fruit() {}
 
     void AfficherFruits() override
     {
