@@ -7,12 +7,15 @@
 
 #include "panier.h"
 #include "fruit.h"
+#include "DecorateurComposantPanierEgal.h"
+#include "DecorateurComposantPanierStar.h"
+#include "DecorateurComposantPanierSharp.h"
 
 int main(int argc, char const *argv[])
 {
     Panier * panierRacine = new Panier();
 
-    Fruit * banane = new Fruit("Banane", false);
+    DecorateurComposantPanierEgal * banane = new DecorateurComposantPanierEgal(new Fruit("Banane", false));
 
     Panier * panier1 = new Panier();
 
@@ -22,11 +25,16 @@ int main(int argc, char const *argv[])
     panier1->AjouterComposant(fraise);
     panier1->AjouterComposant(avocat);
 
+    DecorateurComposantPanierSharp * panier1deco = new DecorateurComposantPanierSharp(panier1);
+
     panierRacine->AjouterComposant(banane);
-    panierRacine->AjouterComposant(panier1);
+    panierRacine->AjouterComposant(panier1deco);
 
     panierRacine->AfficherFruits();
 
     cout << endl << boolalpha << "Avec ou sans pépin ? " << panierRacine->AvecOuSansPepin() << endl;
+
+    delete panierRacine;
+
     return 0;
 }
