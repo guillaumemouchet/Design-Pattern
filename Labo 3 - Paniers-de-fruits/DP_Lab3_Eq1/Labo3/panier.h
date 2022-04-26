@@ -14,7 +14,13 @@ protected:
 
 public:
     Panier() : ComposantPanier() { }
-    ~Panier() { }
+    ~Panier() {
+        for (ComposantPanier * enfant : enfants) {
+            delete enfant;
+        }
+        
+        this->enfants.clear();
+    }
 
     void AjouterComposant(ComposantPanier * composant) override {
         this->enfants.push_back(composant);
