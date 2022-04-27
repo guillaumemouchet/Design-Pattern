@@ -58,9 +58,9 @@ Il est possible de facilement ajouter de nouveaux états sans modifier les ancie
 L'organisation du code liée aux différents états se fait dans des classes séparées, ce qui permet d'éviter d'énormes <i>switch</i> ou suite de <i>if</i>.
 
 ## 4. Conclusion
-Pour conclure, notre projet utilise les différents patterns de manière groupés. Ils ne sont pas utilisés à leur maximum, car pour le State il est très simplifié et suit des changements d'état linéaire et ne change que très peu d'un état à l'autre.</br>
-Le décorateur a été revu en cours de projet, car une approche assez naïve de créer une classe par décorateur a été fait, alors que dans ce cas la il est possible de passer le char au constructeur de la classe.</br>
-Le composite comme pour les fractales est bien utilisé, car il permet de facilement créer les hiérarchies de classes.
+Pour conclure, notre projet utilise les différents patterns de manière groupée. Ils ne sont pas utilisés à leur maximum :le State est très simplifié et suit des changements d'état linéaires. Et il ne change que très peu d'un état à un autre.</br>
+Le décorateur a été revu en cours de projet, car une approche assez naïve de créer une classe par décorateur a été faite au début. Nous nous sommes rendus par la suite qu'il est possible de simplement passer le caractère de décoration au constructeur de la classe.</br>
+Le Composite, comme pour les fractales, est bien utilisé, car il permet de facilement créer des hiérarchies de classes.
 ## 5. Sources
 
 Pour les points forts et faibles du Composite:
