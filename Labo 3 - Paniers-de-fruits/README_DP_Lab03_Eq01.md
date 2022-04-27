@@ -5,9 +5,9 @@ Equipe 01 : M. Guillaume Mouchet, M. Nicolas Aubert, M. Alexandre Besia<br>
 -------------*/
 
 ## 1. Structure source
-Le but de ce projet est de créer trois design pattern différents, le composite, le state et le decorator, puis de les mettres ensemble pour les utiliser sur un panier de fruits et simuler une commande d'un panier de fruit puis de son affichage suivant les envies de l'utilisateur.
+Le but de ce projet est de créer trois design pattern différents, le <i>Composite</i>, le <i>State</i> et le <i>Decorator</i>, puis de les mettre ensemble pour gérer un panier de fruits, simuler une commande à partir de ce panier, puis d'afficher son contenu suivant les envies de l'utilisateur, avec un décorateur.
 ## 2. Amélioration possibles
-Une amélioration possible de notre programme est sur l'affichage en passant une profondeur aux fruits et paniers pour faire une indentation plus représentative.
+L'affichage de notre panier reste basique, sans indentation, ce qui rend sa lecture parfois compliquée. Une bonne amélioration serait de mettre à  jour cet affichage à l'aide de tabulations en fonction de la profondeur des articles.
 ## 3. Les DPs
 
 ### 3.1 Le composite
@@ -25,23 +25,24 @@ Principe ouvert/fermé. Il permet d'introduire facilement des nouveaux types d�
 
 ### 3.2 Le decorator
 
-Le decorator est un design pattern qui permet d'éviter l'acumulation de sous-classes qui font toutes presques la même chose. 
+Un décorateur permet de modifier le comportement d'une classe dynamiquement, sans pour autant modifier son implémentation.
+Il englobe la classe dans une nouvelle classe qui implémente alors les nouveaux comportements. 
 
-Par exemple si on fait un programme qui créer un café starbucks, et qu'on peut avoir entre 1 et 4 suppléments, il faudrait créer des dizaines de classes pour chaque combinaison possible. À la place de faire ça, on peut ajouter les suppléments à l'exécution (et non à la compilation), on créer des "embaleurs" qui implémentent les différents suppléments de notre café et on place l'objet café dans ces embaleurs à l'exécution.
+Par exemple si on fait un programme qui créer un café starbucks, et qu'on peut avoir entre 1 et 4 suppléments, il faudrait créer des dizaines de classes pour chaque combinaison possible. À la place de faire ça, on peut ajouter les suppléments à l'exécution (et non à la compilation), on crée alors des "embaleurs" qui implémentent les différents suppléments de notre café et on place l'objet café dans ces embaleurs à l'exécution.
 
 ### 3.2.1 Faiblesses decorator
 
-Quand on commence à avoir beaucoup de décorateur, ça devient difficile de maintenir le code car ils se ressemblent tous énormément au niveau du code.
+Quand on commence à avoir beaucoup de décorateur, le code devient difficile à maintenir car tous les décorateurs se ressemblent énormément au niveau du code.
 
-Si l'interface Decorator a plein de méthode, tous les décorateur doivent implémenter toutes ces méthodes. Contrairement à l'héritage où les enfants peuvent reprendre les méthodes de la classe parente sans les redéfinir.
+Si l'interface Decorator a plein de méthodes, tous les décorateur doivent implémenter toutes ces méthodes. Contrairement à l'héritage où les enfants peuvent reprendre les méthodes de la classe parente sans les redéfinir.
 
 Retirer un décorateur spécifique de la pile est compliqué.
 
 ### 3.2.2 Forces decorator
 
-Il est très facile d'ajoute un nouveau supplément, une fois la structure principale en place il n'y a aucune adaptation à faire. 
+Il est très facile d'ajouter un nouveau supplément (un nouveau comportement), une fois la structure principale en place il n'y a aucune adaptation à faire. 
 
-Les différents décorateurs peuvent être ajouté dans n'importe quel ordre et en quantité illimité. Les décorateurs appuient bien le principe selon lequel les classes doivent être extensibles mais non modifiables ("SOLID").
+Les différents décorateurs peuvent être ajoutés dans n'importe quel ordre et en quantité illimité. Les décorateurs appuient bien le principe selon lequel les classes doivent être extensibles mais non modifiables ("SOLID").
 
 Comme on peut ajouter autant de décorateur que l'on veut sur un objet, on peut se servir de ce principe pour combiner des effets.   
 
@@ -50,9 +51,11 @@ Le state est un design pattern qui permet de modifier le comportement d'un objet
 ### 3.3.1 Faiblesses state
 Peu utile dans le cas ou il n'y a que peu d'états différents ou de transition à effectuer.
 ### 3.3.2 Forces state
-Le code est lié aux différents états dans des classes uniques et séparées, donc plusieurs programmeur peuvent créer leur classes pour fonctionner sur le même objet.
-Il est possible de facilement ajouter des nouveaux états sans modifier les anciennes ni modifier le contexte.
-L'organisation du code lié aux différents états se fait dans des classes séparés, ce qui permet d'éviter d'énormes <i>switch</i> ou suite de <i>if</i>.
+Le code est lié aux différents états dans des classes uniques et séparées, donc plusieurs programmeur peuvent créer leurs classes pouvant fonctionner sur le même objet.
+
+Il est possible de facilement ajouter des nouveaux états sans modifier les anciens, ni modifier le contexte.
+
+L'organisation du code liée aux différents états se fait dans des classes séparées, ce qui permet d'éviter d'énormes <i>switch</i> ou suite de <i>if</i>.
 
 ## 4. Conclusion
 //TODO
