@@ -14,6 +14,7 @@ public:
     //Est utilisé pour savoir quand arrêter de traiter une commande.
     bool finished = false;
 
+    //Quand on crée une commande on lui fait directement transitionner d'état
     Commande(State *state) : state(nullptr)
     {
         this->TransitionTo(state);
@@ -32,7 +33,7 @@ public:
         this->state->setCommande(this); //On set chaque état à la même commande
     }
     
-    //TraiterCommande appelera la même méthode mais cela dépendera de la classe effective
+    //TraiterCommande appelera la même méthode mais l'appel changera suivant classe effective
     void TraiterCommande()
     {
         this->state->Handle();

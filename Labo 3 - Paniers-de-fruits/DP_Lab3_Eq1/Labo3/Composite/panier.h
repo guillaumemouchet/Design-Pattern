@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "composantPanier.h"
-#include "fruit.h"
+
 using namespace std;
 
 class Panier : public ComposantPanier
@@ -30,11 +30,10 @@ public:
     {
         cout << "Panier[" << endl << endl;
 
-        for (auto *enfant : enfants)
+        for (ComposantPanier *enfant : enfants)
         {
             enfant->AfficherFruits();
-            if (enfants.back() != enfant)
-                cout << endl;
+            cout << endl;
         }
 
         cout << "]" << endl;

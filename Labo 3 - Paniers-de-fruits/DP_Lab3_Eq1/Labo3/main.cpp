@@ -39,7 +39,7 @@ int main(int argc, char const *argv[])
     // Saisie utilisateur pour le choix du caractère de décoration
     char decoChar = chooseDecorator();;
 
-    // Création des composants panier
+    // Création des composants panier à l'aide du décorateur
     DecorateurComposantPanierPrinting *panierRacine = new DecorateurComposantPanierPrinting(new Panier(), decoChar);
     DecorateurComposantPanierPrinting *banane = new DecorateurComposantPanierPrinting(new Fruit("Banane", false), decoChar);
     DecorateurComposantPanierPrinting *panier1 = new DecorateurComposantPanierPrinting(new Panier(), decoChar);
@@ -91,7 +91,7 @@ char chooseDecorator()
         status = scanf("%d", &action);
         cout << endl;
 
-    } while (not(0 <= action && action <= 3 && status == 1));
+    } while (!(0 <= action && action <= 3 && status == 1));
 
     switch (action)
     {

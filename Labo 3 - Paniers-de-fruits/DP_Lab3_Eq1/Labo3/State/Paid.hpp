@@ -11,7 +11,7 @@ class Paid : public State
 public:
     void Handle() override
     {
-        // Affiche que la commande est traiée
+        // Affiche que la commande est traitée
         cout << "Votre commande a bien été payée et est en cours de traitement.\n";
 
         //Changer le status à envoyée
