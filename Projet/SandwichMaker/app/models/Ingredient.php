@@ -1,9 +1,13 @@
 <?php
 
-class Ingredient extends Model
+class Ingredient extends IngredientDeco
 {
-    private $name;
-    private $price;
+    public function __construct(ISandwich $sandwich, string $name, float $price)
+    {
+        $this->sandwich = $sandwich;
+        $this->name = $name;
+        $this->price = $price;
+    }
 
     /**
      * __set

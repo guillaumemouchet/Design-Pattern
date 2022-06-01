@@ -21,9 +21,4 @@ class CommandController
     {
         // ??
     }
-
-    public function test()
-    {
-        echo "test";
-    }
 }
