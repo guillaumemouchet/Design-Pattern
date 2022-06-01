@@ -15,12 +15,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/<?= Helper::createUrl("to_do") ?>">To do</a>
         </li>
-
       </ul>
-      <form method="get" action="/<?= Helper::createUrl("topic_show_all") ?>" class="d-flex">
-        <input class="form-control me-2" name="search" type="search" placeholder="Search" <?php if(isset($_GET['search'])) echo "value=\"". htmlentities($_GET['search']) ."\""; ?>aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
