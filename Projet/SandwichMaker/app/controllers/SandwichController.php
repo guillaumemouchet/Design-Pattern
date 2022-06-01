@@ -2,6 +2,11 @@
 
 class SandwichController
 {
+    public function showCreateView()
+    {
+
+        return Helper::view("create_sandwich");
+    }
     public function addSandwich()
     {
         

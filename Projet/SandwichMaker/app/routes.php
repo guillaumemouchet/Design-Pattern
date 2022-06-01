@@ -3,5 +3,5 @@
 $router->define([
   '' => 'IndexController',
   'index' => 'IndexController',
-  'test' => 'CommandController@test'
+  'create_sandwich' => 'SandwichController@showCreateView'
 ]);
