@@ -11,15 +11,19 @@ USE `sandwich_maker`;
 
 DROP TABLE IF EXISTS `command`;
 CREATE TABLE `command` (
-
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE `ingredient` (
-
+    `name` char(50) NOT NULL,
+    `price` float NOT NULL,
+    PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `sandwich`;
 CREATE TABLE `sandwich` (
-
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

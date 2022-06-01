@@ -1,6 +1,6 @@
 <?php
 
-class TopicLikeController
+class CommandController
 {
     public function addCommand()
     {
@@ -20,5 +20,10 @@ class TopicLikeController
     public function payCommand()
     {
         // ??
+    }
+
+    public function test()
+    {
+        echo "test";
     }
 }

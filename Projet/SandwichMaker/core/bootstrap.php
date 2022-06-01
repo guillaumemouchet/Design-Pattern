@@ -9,9 +9,9 @@ require 'core/App.php';
 require 'helpers/Helper.php';
 require 'core/database/Model.php';
 
-require "app/models/Command.php";
-require "app/models/Ingredient.php";
-require "app/models/Sandwich.php";
+// require "app/models/Command.php";
+// require "app/models/Ingredient.php";
+// require "app/models/Sandwich.php";
 
 App::load_config("config.php");
 

@@ -1,6 +1,9 @@
 <?php
 
 return [
+  // To Adapt
+  'install_prefix' => 'designpatterngroupe04/Projet/SandwichMaker',
+
   'database' => [
     'dbname' => 'sandwich_maker',
     'username' => 'root',
@@ -12,7 +15,4 @@ return [
       PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
     ]
   ],
-
-  // To Adapt
-  'install_prefix' => 'designpatterngroupe04/Projet/SandwichMaker',
 ];

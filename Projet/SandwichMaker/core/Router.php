@@ -31,36 +31,35 @@ class Router
 
     if(array_key_exists ($uri, $this->routes))
     {
-        // En PHP 5.6 et suivants, la liste des arguments peut inclure
-        // le mot clé ... pour indiquer que cette fonction accepte un nombre
-        // variable d'arguments. Les arguments seront passés dans la variable
-        // fournie sous forme d'un tableau
-        return $this->callAction(
-            ...explode('@', $this->routes[$uri]) // ... splat operator, voir http://php.net/manual/fr/migration56.new-features.php
-                                                 // (fonctions variadiques http://php.net/manual/fr/functions.arguments.php#functions.variable-arg-list)
-                                                 // explode (split a string by a string): http://php.net/manual/en/function.explode.php
-        );
+      // En PHP 5.6 et suivants, la liste des arguments peut inclure
+      // le mot clé ... pour indiquer que cette fonction accepte un nombre
+      // variable d'arguments. Les arguments seront passés dans la variable
+      // fournie sous forme d'un tableau
+      return $this->callAction(
+          ...explode('@', $this->routes[$uri]) // ... splat operator, voir http://php.net/manual/fr/migration56.new-features.php
+                                                // (fonctions variadiques http://php.net/manual/fr/functions.arguments.php#functions.variable-arg-list)
+                                                // explode (split a string by a string): http://php.net/manual/en/function.explode.php
+      );
     }
 
     throw new Exception("Not routes defined for this URI.", 1);
-
   }
 
   // call a specific action (method) of a controller
   // if not action is specified, the action index() is called by default
   protected function callAction($controller, $action = 'index')
   {
-      require_once ("app/controllers/" . $controller . ".php");
-      $control = new $controller;
+    require_once ("app/controllers/" . $controller . ".php");
+    $control = new $controller;
 
-      if(! method_exists($control, $action))
-      {
-          throw new Exception(
-              "$controller does not respond to the action $action."
-          );
+    if(!method_exists($control, $action))
+    {
+        throw new Exception(
+            "$controller does not respond to the action $action."
+        );
 
-      }
-      return $control->$action();
+    }
+    return $control->$action();
   }
 
   public static function load($file)

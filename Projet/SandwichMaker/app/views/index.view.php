@@ -1,6 +1,4 @@
 <?php
-    $title = "Sandwich - home";
-    $pageTitle = "";
     require('partials/header.php')
 ?>
 
