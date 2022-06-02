@@ -22,6 +22,13 @@ CREATE TABLE `ingredient` (
     PRIMARY KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `ingredient` (`name`, `price`) VALUES 
+('Bacon', 1.4),
+('Cheese', 0.7),
+('Tomato', 0.4),
+('Green Lettuce', 0.2),
+('Horse steak', 3.2);
+
 DROP TABLE IF EXISTS `sandwich`;
 CREATE TABLE `sandwich` (
     `id` int(11) NOT NULL AUTO_INCREMENT,

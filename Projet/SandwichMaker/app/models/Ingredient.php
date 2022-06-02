@@ -2,12 +2,12 @@
 
 class Ingredient extends IngredientDeco
 {
-    public function __construct(ISandwich $sandwich, string $name, float $price)
+    /*public function __construct(ISandwich $sandwich, string $name, float $price)
     {
         $this->sandwich = $sandwich;
         $this->name = $name;
         $this->price = $price;
-    }
+    }*/
 
     /**
      * __set
@@ -83,5 +83,10 @@ class Ingredient extends IngredientDeco
         ];
 
         Model::deleteByCriteria('ingredient', $ingredient_values);
+    }
+
+    public function getAsSelectOption()
+    {
+        return '<option value="' . $this->name . '" name="' . $this->name . '">'. htmlentities($this->name) . ' : ' . htmlentities($this->price) . ' CHF</option>';
     }
 }

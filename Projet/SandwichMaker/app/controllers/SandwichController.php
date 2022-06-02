@@ -5,25 +5,17 @@ class SandwichController
     public function showCreateView()
     {
         $sandwich = new Pain();
-        $sandwichWithCheese = new Ingredient($sandwich, "Cheese", 0.7);
-        $sandwichWithCheeseAndBacon = new Ingredient($sandwichWithCheese, "Bacon", 1.3);
+
+        $ingredients = Ingredient::fetchAll();
+
         return Helper::view("create_sandwich",
             [
-                "sandwich" => $sandwichWithCheeseAndBacon
+                "sandwich" => $sandwich,
+                "ingredients" => $ingredients
             ]);
     }
-    public function addSandwich()
+    public function AddIngredient()
     {
         
-    }
-
-    public function updateSandwich()
-    {
-
-    }
-
-    public function removeSandwich()
-    {
- 
     }
 }
