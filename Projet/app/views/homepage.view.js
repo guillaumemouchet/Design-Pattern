@@ -1,7 +1,8 @@
 /**
  * @class HomepageView
  */
- class HomepageView {
+ class HomepageView 
+ {
     constructor()
     {
       this.app = Helper.getElement('#root');

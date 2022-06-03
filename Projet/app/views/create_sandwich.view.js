@@ -23,7 +23,7 @@
       this.title = Helper.createElement('h1');
       this.title.textContent = 'Create a sandwich';
 
-      this.sandwichIngredientsList = Helper.createElement('ul');
+      this.sandwichIngredientsList = Helper.createElement('ul', "list-group");
       
       this.app.append(this.title, this.form, this.sandwichIngredientsList, this.totalPriceLabel, this.commandButton);
     }
@@ -36,9 +36,7 @@
         this.sandwichIngredientsList.removeChild(this.sandwichIngredientsList.firstChild);
       }
 
-      const p = Helper.createElement('p');
-      p.innerHTML = sandwich.getNameAsList();
-      this.sandwichIngredientsList.append(p);
+      this.sandwichIngredientsList.innerHTML = (sandwich.getNameAsList());
 
       this.totalPriceLabel.textContent = "Total : " + sandwich.calculatePrice().toFixed(2) + " CHF";
     }
