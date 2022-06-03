@@ -3,43 +3,29 @@
  *
  * Visual representation of the model.
  */
- class View {
+ class CreateSandwichView {
     constructor() {
-      this.app = this.getElement('#root');
+      this.app = Helper.getElement('#root');
 
-      this.form = this.createElement('form');
+      this.form = Helper.createElement('form');
 
-      this.submitButton = this.createElement('button');
+      this.submitButton = Helper.createElement('button');
       this.submitButton.textContent = 'Add';
 
-      this.totalPriceLabel = this.createElement('span');
+      this.totalPriceLabel = Helper.createElement('span');
 
-      this.commandButton = this.createElement('button');
+      this.commandButton = Helper.createElement('button');
       this.commandButton.textContent = 'Command';
 
-      this.availableIngredientsList = this.createElement('select');
+      this.availableIngredientsList = Helper.createElement('select');
       this.form.append(this.availableIngredientsList, this.submitButton);
 
-      this.title = this.createElement('h1');
+      this.title = Helper.createElement('h1');
       this.title.textContent = 'Create a sandwich';
 
-      this.sandwichIngredientsList = this.createElement('ul');
+      this.sandwichIngredientsList = Helper.createElement('ul');
       
       this.app.append(this.title, this.form, this.sandwichIngredientsList, this.totalPriceLabel, this.commandButton);
-    }
-  
-    createElement(tag, className) {
-      const element = document.createElement(tag);
-  
-      if (className) element.classList.add(className);
-  
-      return element;
-    }
-  
-    getElement(selector) {
-      const element = document.querySelector(selector);
-  
-      return element;
     }
 
     displayCurrentSandwich(sandwich)
@@ -50,11 +36,11 @@
         this.sandwichIngredientsList.removeChild(this.sandwichIngredientsList.firstChild);
       }
 
-      const p = this.createElement('p');
+      const p = Helper.createElement('p');
       p.innerHTML = sandwich.getNameAsList();
       this.sandwichIngredientsList.append(p);
 
-      this.totalPriceLabel.textContent = "Total : " + sandwich.calculatePrice() + " CHF";
+      this.totalPriceLabel.textContent = "Total : " + sandwich.calculatePrice().toFixed(2) + " CHF";
     }
   
     displayIngredients(ingredients) {
@@ -69,7 +55,7 @@
 
       ingredients.forEach(ingredient => {
         // Create the option
-        const option = this.createElement('option');
+        const option = Helper.createElement('option');
 
         option.value = count++;
         option.name = ingredient.name;

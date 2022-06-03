@@ -1,16 +1,11 @@
 /**
- * @class Controller
- *
- * Links the user input and the view output.
- *
- * @param model
- * @param view
+ * @class SandwichController
  */
  class SandwichController 
  {
-    constructor(view) 
+    showCreateSandwichView()
     {
-      this.view = view
+      this.view = new CreateSandwichView();
 
       this.sandwich = Ingredient.fetchSandwich();
       

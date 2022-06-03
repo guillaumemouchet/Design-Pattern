@@ -16,11 +16,7 @@
             new Ingredient('Frites', 1.4),
         ];
 
-        /*Storage.getInstance().readTextFile("./data/ingredient.json", function(text){
-            var data = JSON.parse(text);
-            console.log(data);
-        });*/
-
+        // Storage.getInstance().readJsonFile("./data/ingredient.json");
         // Parse the data
         const dataJson = JSON.parse(JSON.stringify(data));
 
