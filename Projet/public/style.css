@@ -1,4 +1,4 @@
-*,
+/**,
 *::before,
 *::after {
   box-sizing: border-box
@@ -87,4 +87,4 @@ li span:focus {
   outline: 0;
   border: 2px solid #007bff;
   background: rgba(179, 207, 255, 0.52)
-}
+}*/
