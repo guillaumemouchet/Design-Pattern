@@ -1,15 +1,15 @@
 class Ingredient extends Model
 {
-    constructor(name, price)
+    constructor(jsonIngredient)
     {
         super();
-        this.name = name;
-        this.price = price;
+        this.name = jsonIngredient.name;
+        this.price = jsonIngredient.price;
     }
 
     static fetchAll()
     {
-        return Model.fetchAll('ingredients');
+        return Model.fetchAll('ingredients', Ingredient);
     }
 
     static fetchSandwich()
@@ -17,12 +17,17 @@ class Ingredient extends Model
         const storage = localStorage;
         const jsonSandwich = storage.getItem("sandwich");
 
-        if(jsonSandwich == null || jsonSandwich == undefined)
+        return Ingredient.parseSandwichFromJson(jsonSandwich);             
+    }
+
+    static parseSandwichFromJson(json)
+    {
+        if(json == null || json == undefined)
         {
             return new Pain();
         }
 
-        let currentDeco = JSON.parse(jsonSandwich);;
+        let currentDeco = JSON.parse(json);;
 
         let lstDeco = [];
 
@@ -39,26 +44,6 @@ class Ingredient extends Model
             sandwich = new IngredientDeco(sandwich, lstDeco[i].name, lstDeco[i].price);
         }
 
-        return sandwich;        
+        return sandwich; 
     }
-
-    save()
-    {
-        Model.save(this, 'sandwich');
-    }
-
-    remove()
-    {
-        Model.remove('sandwich');
-    }
-
-    /*calculatePrice()
-    {
-        return this.price;
-    }
-
-    getNameAsList()
-    {
-        return '<li list-group-item d-flex justify-content-between align-items-center">' + this.name + '<span class="badge bg-primary rounded-pill">'+ this.price +' CHF</span></li>';
-    }*/
 }

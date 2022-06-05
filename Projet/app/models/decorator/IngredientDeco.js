@@ -13,6 +13,11 @@ class IngredientDeco extends Model
         Model.save(this, 'sandwich');
     }
 
+    addToCart()
+    {
+        Model.get
+    }
+
     remove()
     {
         Model.remove('sandwich');

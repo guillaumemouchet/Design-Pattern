@@ -7,24 +7,14 @@
  {
     static fetchAll(name, classname)
     {
-        // Generate / Fetch data
-        const data = [
-            new Ingredient('Bacon', 1.9),
-            new Ingredient('Laitue', 0.4),
-            new Ingredient('Fromage', 0.8),
-            new Ingredient('Poulet grillé', 2.2),
-            new Ingredient('Frites', 1.4),
-        ];
+        const storage = localStorage;
 
-        // Storage.getInstance().readJsonFile("./data/ingredient.json");
-        // Parse the data
-        const dataJson = JSON.parse(JSON.stringify(data));
+        const jsonData = storage.getItem(name);
 
         const dataObject = [];
 
-        // Fetch as Ingredient object
-        dataJson.forEach(element => {
-            dataObject.push(new Ingredient(element.name, element.price));
+        JSON.parse(jsonData).forEach(element => {
+            dataObject.push(new classname(element));
         });
 
         return dataObject;
@@ -36,11 +26,29 @@
 
         const data = JSON.stringify(obj);
 
+        // console.log(data); // DEBUG
+
         storage.setItem(name, data);
+
+        // console.log(JSON.parse(storage.getItem(name))); // DEBUG
     }
 
     static remove(name)
     {
         localStorage.setItem(name, null);
+    }
+
+    static initialize()
+    {
+        // Generate
+        const data = [
+            new Ingredient({'name' : 'Bacon', 'price' : 1.9}),
+            new Ingredient({'name' : 'Laitue', 'price' :  0.4}),
+            new Ingredient({'name' : 'Fromage', 'price' :  0.8}),
+            new Ingredient({'name' : 'Poulet grillé', 'price' : 2.2}),
+            new Ingredient({'name' : 'Frites', 'price' : 1.4}),
+        ];
+
+        Model.save(data, 'ingredients');
     }
 }  

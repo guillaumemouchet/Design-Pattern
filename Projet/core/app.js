@@ -1,4 +1,6 @@
 
+Model.initialize();
+
 const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
