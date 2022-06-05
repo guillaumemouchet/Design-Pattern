@@ -7,10 +7,10 @@ class Command extends Model
 
         console.log(jsonCommand);
 
-        if(Array.isArray(jsonCommand))
+        if(Array.isArray(jsonCommand.sandwiches))
         {
-            jsonCommand.forEach(sandwich => {
-                this.sandwiches.push(Ingredient.parseSandwichFromJson(sandwich));
+            jsonCommand.sandwiches.forEach(sandwich => {
+                this.sandwiches.push(Ingredient.parseSandwich(sandwich));
             });
         }
         else

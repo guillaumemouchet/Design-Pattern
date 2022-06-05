@@ -17,7 +17,7 @@ class Ingredient extends Model
         const storage = localStorage;
         const jsonSandwich = storage.getItem("sandwich");
 
-        return Ingredient.parseSandwichFromJson(jsonSandwich);             
+        return Ingredient.parseSandwichFromJson(jsonSandwich);
     }
 
     static parseSandwichFromJson(json)
@@ -47,8 +47,28 @@ class Ingredient extends Model
         return sandwich; 
     }
 
+    static parseSandwich(currentDeco)
+    {
+        let lstDeco = [];
+
+        while(currentDeco)
+        {
+            lstDeco.push(currentDeco);
+            currentDeco = currentDeco.sandwich;
+        }
+
+        let sandwich = new Pain();
+
+        for(let i = lstDeco.length - 2; i >= 0; i--)
+        {
+            sandwich = new IngredientDeco(sandwich, lstDeco[i].name, lstDeco[i].price);
+        }
+
+        return sandwich; 
+    }
+
     static addToCart(sandwich)
     {
-        
+
     }
 }
