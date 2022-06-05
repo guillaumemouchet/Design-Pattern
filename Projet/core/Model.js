@@ -13,11 +13,20 @@
 
         const dataObject = [];
 
-        JSON.parse(jsonData).forEach(element => {
+        JSON.parse(jsonData || "[]").forEach(element => {
             dataObject.push(new classname(element));
         });
 
         return dataObject;
+    }
+
+    static fetch(name, classname)
+    {
+        const storage = localStorage;
+
+        const element = JSON.parse(storage.getItem(name) || "[]");
+
+        return new classname(element);
     }
 
     static save(obj, name)
@@ -35,7 +44,7 @@
 
     static remove(name)
     {
-        localStorage.setItem(name, null);
+        localStorage.removeItem(name);
     }
 
     static initialize()

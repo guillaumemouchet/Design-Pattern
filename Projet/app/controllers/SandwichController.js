@@ -30,8 +30,8 @@
     }
 
     handleAddToCart = () => {
+      this.sandwich.addToCart();
       this.sandwich.remove();
-      this.sandwich = new Pain();
       this.onIngredientListChanged(Ingredient.fetchAll());
     }
   }

@@ -21,4 +21,16 @@ class Pain extends ISandwich
     {
         return '<li list-group-item d-flex justify-content-between align-items-center">' + this.name + '<span class="badge bg-primary rounded-pill">'+ this.price +' CHF</span></li>';
     }
+
+    addToCart()
+    {
+        let command = Command.fetch();
+        command.addSandwich(this);
+        command.save();
+    }
+
+    remove()
+    {
+        Model.remove('sandwich');
+    }
 }

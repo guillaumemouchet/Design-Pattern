@@ -18,5 +18,10 @@ const routes = {
     {
         "controller" : SandwichController,
         "method" : 'showCreateSandwichView'
+    },
+    "cart" :
+    {
+        "controller" : CommandController,
+        "method" : "showCartView"
     }
 }

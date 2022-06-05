@@ -15,7 +15,9 @@ class IngredientDeco extends Model
 
     addToCart()
     {
-        Model.get
+        let command = Command.fetch();
+        command.addSandwich(this);
+        command.save();
     }
 
     remove()
