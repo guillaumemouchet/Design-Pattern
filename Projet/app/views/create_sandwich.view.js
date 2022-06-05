@@ -9,13 +9,15 @@
 
       this.form = Helper.createElement('form');
 
-      this.submitButton = Helper.createElement('button');
+      let buttonClasses = 'btn btn-info text-light m-2';
+
+      this.submitButton = Helper.createElement('button', buttonClasses);
       this.submitButton.textContent = 'Add';
 
       this.totalPriceLabel = Helper.createElement('span');
 
-      this.commandButton = Helper.createElement('button');
-      this.commandButton.textContent = 'Command';
+      this.addToCartButton = Helper.createElement('button', buttonClasses);
+      this.addToCartButton.textContent = 'Add to cart';
 
       this.availableIngredientsList = Helper.createElement('select');
       this.form.append(this.availableIngredientsList, this.submitButton);
@@ -25,7 +27,7 @@
 
       this.sandwichIngredientsList = Helper.createElement('ul', "list-group");
       
-      this.app.append(this.title, this.form, this.sandwichIngredientsList, this.totalPriceLabel, this.commandButton);
+      this.app.append(this.title, this.form, this.sandwichIngredientsList, this.totalPriceLabel, this.addToCartButton);
     }
 
     displayCurrentSandwich(sandwich)
@@ -41,7 +43,7 @@
       this.totalPriceLabel.textContent = "Total : " + sandwich.calculatePrice().toFixed(2) + " CHF";
     }
   
-    displayIngredients(ingredients) {
+    displayAvailableIngredients(ingredients) {
       // Delete all nodes
       while (this.availableIngredientsList.firstChild) 
       {
@@ -83,9 +85,9 @@
       });
     }
 
-    bindCommandSanwidch(handler)
+    bindAddtoCartSanwidch(handler)
     {
-      this.commandButton.addEventListener('click', event => {
+      this.addToCartButton.addEventListener('click', event => {
         event.preventDefault();
 
         handler();

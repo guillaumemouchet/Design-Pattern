@@ -1,7 +1,7 @@
 /**
- * @class HomepageView
+ * @class AboutView
  */
- class HomepageView 
+ class AboutView 
  {
     constructor()
     {

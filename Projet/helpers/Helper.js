@@ -1,10 +1,10 @@
 class Helper
 {
-    static createElement(tag, className)
+    static createElement(tag, classesNames)
     {
         const element = document.createElement(tag);
 
-        if(className) element.classList.add(className);
+        if(classesNames) classesNames.split(' ').map(className =>  element.classList.add(className));
 
         return element;
     }

@@ -9,6 +9,11 @@ const routes = {
         "controller" : IndexController,
         "method" : 'index'
     },
+    "about" :
+    {
+        "controller" : IndexController,
+        "method" : 'about'
+    },
     "create_sandwich" :
     {
         "controller" : SandwichController,
