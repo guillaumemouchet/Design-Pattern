@@ -7,15 +7,16 @@
     {
       this.view = new CartView();
 
-      this.sandwichesInCart = Ingredient.fetchSandwich();
+      this.command = Command.fetch();
       
       // Explicit this binding
       this.view.bindPassCommand(this.handlePassCommand)
 
-      this.view.displayCart(Command.fetch());
+      this.view.displayCart(this.command);
     }
 
     handlePassCommand = () => {
-      // TO DO
+      this.command.remove();
+      Helper.redirect('index');
     }
   }

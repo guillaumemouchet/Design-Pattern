@@ -33,7 +33,8 @@
     displayCurrentSandwich(sandwich)
     {
       // Delete all nodes
-      while (this.sandwichIngredientsList.firstChild) 
+      console.log("test");
+      while (this.sandwichIngredientsList.firstChild)
       {
         this.sandwichIngredientsList.removeChild(this.sandwichIngredientsList.firstChild);
       }

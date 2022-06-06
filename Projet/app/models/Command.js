@@ -35,4 +35,9 @@ class Command extends Model
 
         Model.save(this, 'command');
     }
+
+    remove()
+    {
+        Model.remove('command');
+    }
 }

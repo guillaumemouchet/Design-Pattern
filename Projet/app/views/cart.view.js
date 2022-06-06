@@ -39,6 +39,7 @@
       let totalPrice = 0;
       
       command.sandwiches.forEach(sandwich => {
+            let col = Helper.createElement('div', 'col');
             let card = Helper.createElement('div', 'card mt-2');
             let cardbody = Helper.createElement('div', 'card-body');
             let cardtitle = Helper.createElement('h5', 'card-title');
@@ -52,7 +53,9 @@
 
             card.append(cardbody);
 
-          this.sandwichesList.append(card);
+            col.append(card);
+
+          this.sandwichesList.append(col);
 
           totalPrice += sandwich.calculatePrice();
       });
