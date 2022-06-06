@@ -5,8 +5,6 @@ class Command extends Model
         super();
         this.sandwiches = [];
 
-        console.log(jsonCommand);
-
         if(Array.isArray(jsonCommand.sandwiches))
         {
             jsonCommand.sandwiches.forEach(sandwich => {
@@ -26,11 +24,7 @@ class Command extends Model
 
     addSandwich(sandwich)
     {
-        // console.log(this);
-        // console.log(sandwich);
         this.sandwiches.push(sandwich);
-
-        // console.log(this);
     }
 
     save()

@@ -19,7 +19,7 @@ class Pain extends ISandwich
 
     getNameAsList()
     {
-        return '<li list-group-item d-flex justify-content-between align-items-center">' + this.name + '<span class="badge bg-primary rounded-pill">'+ this.price +' CHF</span></li>';
+        return '<li list-group-item d-flex justify-content-between align-items-center">' + this.name + '<span class="badge bg-info text-light rounded-pill float-end">'+ this.price +' CHF</span></li>';
     }
 
     addToCart()

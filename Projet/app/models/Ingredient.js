@@ -66,9 +66,4 @@ class Ingredient extends Model
 
         return sandwich; 
     }
-
-    static addToCart(sandwich)
-    {
-
-    }
 }
