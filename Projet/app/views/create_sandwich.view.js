@@ -12,17 +12,17 @@
       let buttonClasses = 'btn btn-info text-light m-2';
 
       this.submitButton = Helper.createElement('button', buttonClasses);
-      this.submitButton.textContent = 'Add';
+      this.submitButton.textContent = 'Add ingredient';
 
       this.totalPriceLabel = Helper.createElement('span');
 
       this.addToCartButton = Helper.createElement('button', buttonClasses);
       this.addToCartButton.textContent = 'Add to cart';
 
-      this.availableIngredientsList = Helper.createElement('select');
+      this.availableIngredientsList = Helper.createElement('select', "form-select");
       this.form.append(this.availableIngredientsList, this.submitButton);
 
-      this.title = Helper.createElement('h1');
+      this.title = Helper.createElement('h1', 'mt-5 mb-3');
       this.title.textContent = 'Create a sandwich';
 
       this.sandwichIngredientsList = Helper.createElement('ul', "list-group");
@@ -33,7 +33,6 @@
     displayCurrentSandwich(sandwich)
     {
       // Delete all nodes
-      console.log("test");
       while (this.sandwichIngredientsList.firstChild)
       {
         this.sandwichIngredientsList.removeChild(this.sandwichIngredientsList.firstChild);
