@@ -7,13 +7,11 @@
  {
     static fetchAll(name, classname)
     {
-        const storage = localStorage;
-
-        const jsonData = storage.getItem(name);
+        const jsonData = Storage.getInstance().retrieveAsJson(name);
 
         const dataObject = [];
 
-        JSON.parse(jsonData || "[]").forEach(element => {
+        jsonData.forEach(element => {
             dataObject.push(new classname(element));
         });
 
@@ -22,29 +20,19 @@
 
     static fetch(name, classname)
     {
-        const storage = localStorage;
+        const jsonData = Storage.getInstance().retrieveAsJson(name);
 
-        const element = JSON.parse(storage.getItem(name) || "[]");
-
-        return new classname(element);
+        return new classname(jsonData);
     }
 
     static save(obj, name)
     {
-        const storage = localStorage;
-
-        const data = JSON.stringify(obj);
-
-        // console.log(data); // DEBUG
-
-        storage.setItem(name, data);
-
-        // console.log(JSON.parse(storage.getItem(name))); // DEBUG
+        Storage.getInstance().saveObject(name, obj);
     }
 
     static remove(name)
     {
-        localStorage.removeItem(name);
+        Storage.getInstance().remove(name);
     }
 
     static initialize()

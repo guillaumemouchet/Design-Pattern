@@ -1,7 +1,6 @@
 class Storage 
 {
     static #storageInstance = null;
-    #file = null;
 
     static getInstance()
     {
@@ -13,8 +12,30 @@ class Storage
         return Storage.#storageInstance;
     }
 
-    readJsonFile(file)
+    saveJson(name, json)
     {
-        return loadJSON(file);
+        localStorage.setItem(name, json);
+    }
+
+    saveObject(name, obj)
+    {
+        const data = JSON.stringify(obj);
+
+        localStorage.setItem(name, data);
+    }
+
+    retrieveAsText(name)
+    {
+        return localStorage.getItem(name);
+    }
+
+    retrieveAsJson(name)
+    {
+        return JSON.parse(localStorage.getItem(name) || "[]");
+    }
+
+    remove(name)
+    {
+        localStorage.removeItem(name);
     }
 }
