@@ -19,4 +19,9 @@ class Helper
     {
         window.location.href = window.location.pathname + "?route=" + path;
     }
+
+    static sleep(ms) 
+    {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }
