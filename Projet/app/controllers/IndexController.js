@@ -17,4 +17,9 @@
     {
       this.view = new AboutView();
     }
+
+    showUnknownRoute()
+    {
+      this.view = new UnknownRouteView();
+    }
   }

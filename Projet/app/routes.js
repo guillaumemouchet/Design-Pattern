@@ -23,5 +23,10 @@ const routes = {
     {
         "controller" : CommandController,
         "method" : "showCartView"
+    },
+    "unknown" :
+    {
+        "controller" : IndexController,
+        "method" : "showUnknownRoute"
     }
 }

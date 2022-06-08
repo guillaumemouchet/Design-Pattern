@@ -5,7 +5,13 @@ const queryString = window.location.search;
 
 const params = new URLSearchParams(queryString);
 
-const routeParam = params.get("route");
+let routeParam = params.get("route");
+
+// If the route does not exist
+if(routes[routeParam] == undefined)
+{
+    routeParam = "unknown";
+}
 
 const controller = routes[routeParam].controller;
 
