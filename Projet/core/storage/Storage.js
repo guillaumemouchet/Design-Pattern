@@ -34,6 +34,11 @@ class Storage
         return JSON.parse(localStorage.getItem(name) || "[]");
     }
 
+    retrieveUniqueValue(name)
+    {
+        return localStorage.getItem(name);
+    }
+
     remove(name)
     {
         localStorage.removeItem(name);

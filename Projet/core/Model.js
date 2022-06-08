@@ -35,6 +35,15 @@
         Storage.getInstance().remove(name);
     }
 
+    static update(params, name)
+    {
+        let jsonData = Storage.getInstance().retrieveAsJson(name);
+
+        params.map(propertyName, value => jsonData[propertyName] = value);
+
+        Storage.getInstance().save(jsonData);
+    }
+
     static initialize()
     {
         // Generate

@@ -29,8 +29,6 @@ class Command extends Model
 
     save()
     {
-        const storage = localStorage;
-
         Model.remove('command');
 
         Model.save(this, 'command');

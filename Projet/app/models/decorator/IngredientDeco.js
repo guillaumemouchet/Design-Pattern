@@ -18,6 +18,10 @@ class IngredientDeco extends Model
         let command = Command.fetch();
         command.addSandwich(this);
         command.save();
+
+        // Add sandwiches notification
+        const previousValue = parseInt(Storage.getInstance()?.retrieveUniqueValue("new_sandwich_in_cart_notification") || 0);
+        Model.save(previousValue + 1, "new_sandwich_in_cart_notification");
     }
 
     remove()

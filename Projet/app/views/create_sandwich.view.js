@@ -91,6 +91,8 @@
         event.preventDefault();
 
         handler();
+
+        updateNotifications();
       });
     }
   }

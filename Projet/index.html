@@ -38,7 +38,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./index.html?route=cart">My cart</a>
+          <a class="nav-link active" id="my_cart" aria-current="page" href="./index.html?route=cart">My cart</a>
         </li>
       </ul>
 
@@ -49,7 +49,6 @@
   <div class="container">
     <div id="root" class="row justify-content-md-center"></div>
   </div>
-
 
   <script src="Helpers/Helper.js"></script>
   <script src="app/models/ISandwich.js"></script>
@@ -69,6 +68,21 @@
   <script src="app/controllers/CommandController.js"></script>
   <script src="app/routes.js"></script>
   <script src="core/app.js"></script>
+
+  <script>
+    updateNotifications();
+
+    // Display new sandwiches notification
+    function updateNotifications()
+    {
+      let newSandwichesCount = Storage.getInstance().retrieveAsText("new_sandwich_in_cart_notification");
+      if(newSandwichesCount)
+      {
+        document.getElementById('my_cart').textContent = "My cart (" + newSandwichesCount + " new " + (newSandwichesCount > 1 ? "sandwiches" : "sandwich") + ")";
+      }
+    }
+    
+  </script>
 </body>
 
 </html>
