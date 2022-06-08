@@ -5,16 +5,19 @@ class Command extends Model
         super();
         this.sandwiches = [];
 
-        if(Array.isArray(jsonCommand.sandwiches))
+        if(JSON.stringify(jsonCommand) != "[]")
         {
-            jsonCommand.sandwiches.forEach(sandwich => {
-                this.sandwiches.push(Ingredient.parseSandwich(sandwich));
-            });
+            if(Array.isArray(jsonCommand.sandwiches))
+            {
+                jsonCommand.sandwiches.forEach(sandwich => {
+                    this.sandwiches.push(Ingredient.parseSandwich(sandwich));
+                });
+            }
+            else
+            {
+                this.sandwiches.push(jsonCommand);
+            } 
         }
-        else
-        {
-            this.sandwiches.push(jsonCommand);
-        } 
     }
 
     static fetch()

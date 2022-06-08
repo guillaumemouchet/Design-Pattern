@@ -20,6 +20,5 @@
 
     handlePassCommand = () => {
       this.command.remove();
-      Helper.redirect('index');
     }
   }

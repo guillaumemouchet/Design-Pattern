@@ -27,6 +27,8 @@ class CartView {
   {
     let totalPrice = 0;
 
+    if(command.sandwiches.length == 0) this.passCommandButton.classList.add("d-none");
+
     command.sandwiches.forEach(sandwich => {
       let col = Helper.createElement('div', 'col');
       let card = Helper.createElement('div', 'card mt-2');
@@ -56,6 +58,12 @@ class CartView {
     this.passCommandButton.addEventListener('click', async event => {
       event.preventDefault();
 
+      handler();
+
+      this.sandwichesList.classList.add("d-none");
+      this.totalPrice.classList.add("d-none");
+      this.passCommandButton.classList.add("d-none");
+
       this.text.classList.remove("d-none");
       
       this.text.textContent = 'Votre commande est en cours de traitement, veuillez attendre avec patience votre repas.';
@@ -66,8 +74,8 @@ class CartView {
         this.text.textContent = 'Merci de votre patience, et bonne appetit !\nNous espérons vous revoir prochainement.\nVous serez redirigé sur la page d\'accueil dans ' + i + ' secondes';
         await Helper.sleep(1000);
       }
-      
-      handler();
+
+      Helper.redirect("index");
     });
 
   }
