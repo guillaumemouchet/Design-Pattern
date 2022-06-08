@@ -61,3 +61,11 @@ Une problématique est que l'application est censé être en plug and play, ce q
 ## Références
 
 https://talks.freelancerepublik.com/comprendre-utiliser-architecture-mvc/#Les_avantages_et_inconvenients_du_pattern_MVC
+
+https://www.dofactory.com/javascript/design-patterns/decorator#:~:text=The%20Decorator%20pattern%20extends%20(decorates,functionality%20to%20the%20original%20object.
+
+https://refactoring.guru/fr/design-patterns/decorator
+
+Liste des différents design patterns : https://refactoring.guru/fr/design-patterns
+
+Exemple d'architecture MVC en Javascript pure : https://www.taniarascia.com/javascript-mvc-todo-app/
