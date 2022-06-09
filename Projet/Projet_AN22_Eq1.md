@@ -3,42 +3,67 @@
 ### Equipe 5 : Nicolas Aubert, Alexandre Besia, Guillaume Mouchet
 ---
 ## Contexte
-Dans le cadre du cours de Design Pattern, il nous a été demandé de réaliser un court projet permettant de mettre en place les connaissances acquises durant celui-ci. Il nous fallait utiliser 3 Design Pattern différents dont au moins 2 vu en classe et un autre externe.
-Nous nous sommes inspiré de l'exemple vu en classe sur les différents type de café StarBuzz et nous avons voulu faire la même chose mais pour des sandwichs, comme pourrait le faire Subway, ou chaque consommateur peut construire son repas comme il veut.
-Nous avons décidé d'utiliser le Design Pattern Decorator afin de nous permettre de facilement ajouter des ingrédients sur dans notre pain, Nous avons aussi mis en place le principe de Modèle-Vue-Controller. Le single ton a été utilisé pour le stockage pour que chaque partie du programme ai une unique instance des ingrédients.
+Dans le cadre du cours de Design Pattern, nous avons réalisé un court projet permettant de consolider les connaissances acquises durant celui-ci. Il nous fallait utiliser 3 Design Pattern différents dont au moins 2 vus en classe et un autre externe.
 
-### Design Pattern
-## MVC
-Ce pattern met en place un principe primordial dans la programmation, "diviser pour mieux régner", afin d'éviter qu'un application s'occupe de tout faire les responsabilité sont séparée en 3:
-* Le modèle, il s'occupe des données de l'application Web, comment elles sont stockées et les différentes méthodes qui permetterait de les modifier, comme des setters, getters ou des fetchs dans le cas d'une base de données.
-* La vue, est l'interface graphique de l'application, c'est avec elle que se fait les interactions entre l'utilisateur et le code métier, elle ne contient presque aucune logique, elle s'occupe d'afficher ce qu'on lui donne.
-* Le controller, c'est la qu'on retrouve la logique métier, on trouvera dans les contrôlers, les calculs, les algorithmes et le traitement des données, il fait l'intermédiaire entre la vue et le modèle pour s'assurer que les valeurs que chacun s'envoie sont conformes.
-## Forces
+## Projets
+
+Nous nous sommes inspirés de l'exemple vu en classe sur les différents types de café StarBuzz. Nous avons créé une application permettant de créer des sandwichs personnalisables, où l'utilisateur choisit les ingrédients qu'il souhaite.
+
+Afin de faciliter l'implémentation de la partie "personnalisation d'un sandwich", nous avons utilisé le Design Pattern <i>Décorateur</i>.
+
+**Étoffer**
+
+Nous avons décidé de réalisé une application web (site web) afin de fournir une interface universelle pour les utilisateurs. Pour avoir une structure fonctionnelle, intéressante et simple, avec l'accord de M Gobron, nous avons utilisé une architecture MVC (Model-View-Controller). Nous reviendrons plus en détails sur celle-ci plus tard.
+
+Finalement, comme nous voulions intégrer un système de panier / commande, nous avons eut alors besoin d'un espace de stockage. C'est pourquoi nous avons pensé au Design Pattern Singleton, afin de limiter à un le nombre d'instance de notre classe de stockage.
+
+## Pattern MVC
+Ce pattern, de type **architectural**,  met en place un principe primordial dans la programmation, "diviser pour mieux régner". Cela permet de structurer l'application, et ainsi soulager sa charge de travail ; éviter qu'elle ne s'occupe de tout. Les responsabilités sont séparées en trois partie bien distinctes :
+- Modèle,
+- Vue,
+- Controller
+
+### Les modèles
+
+Le modèle, il s'occupe des données de l'application Web, comment elles sont stockées et les différentes méthodes qui permetterait de les modifier, comme des setters, getters ou des fetchs dans le cas d'une base de données.
+
+### Les vues
+
+La vue, est l'interface graphique de l'application, c'est avec elle que se fait les interactions entre l'utilisateur et le code métier, elle ne contient presque aucune logique, elle s'occupe d'afficher ce qu'on lui donne.
+
+### Les controllers
+
+Le controller, c'est la qu'on retrouve la logique métier, on trouvera dans les contrôlers, les calculs, les algorithmes et le traitement des données, il fait l'intermédiaire entre la vue et le modèle pour s'assurer que les valeurs que chacun s'envoie sont conformes.
+
+### Forces
+
 Facile à maintenir, vu que les tâches sont séparée il est facile d'aller faire des modifications.
 Le développement peut se faire en parallèle car il n'est pas nécessaire de connaitre le fonctionnement du modèle pour faire fonctionner la vue, il suffit de faire appel à une fonction du contrôller qui donnera les informations du modèle.
 La séparation des vues permet de tester le code de manière plus simple.
-## Faiblesses
+
+### Faiblesses
+
 Il existe des difficultés à utiliser MVC avec le développement front-end moderne (frameworks fronts orientés composants).
 En cas d'utilisation d'outils tier peu de souplesse est laissée au programmeur.
 Les interactions entre les vues et les modèles sont bidirectionnels et nombreuses, ce qui complique le développement.
 
+## Pattern Decorator (Décorateur)
 
-## Decorateur
-Un décorateur permet de modifier le comportement d'une classe dynamiquement, sans pour autant modifier son implémentation.
+Un décorateur permet de modifier d'ajouter des comportements à une classe, et ce dynamiquement, sans pour autant modifier son implémentation.
 Il englobe la classe dans une nouvelle classe qui implémente alors les nouveaux comportements. 
 
-Dans notre cas on aimerait crée des sandwichs avec des suppléments, sans le décorateur il faudrait créé une classe pour chaque combinaisons de sandwich possible, ce qui est impossible à réaliser si les suppléments peuvent être infini.
+Dans notre cas on aimerait créer des sandwichs avec des suppléments, sans le décorateur il faudrait créé une classe pour chaque combinaisons de sandwich possible, ce qui est impossible à réaliser si les suppléments peuvent être infini.
 A la place à l'aide du décorateur nous les ajoutons à l'exécution et non à la compilations, on crée des embaleurs qui implémentent les suppléments de notre sandwich, et à l'execution on place notre sandwich dans ces différents emballeurs.
 
 
-## Forces
+### Forces
 Il est très facile d'ajouter un nouveau supplément (un nouveau comportement), une fois la structure principale en place. Il n'y a aucune adaptation à faire. 
 
 Les différents décorateurs peuvent être ajoutés dans n'importe quel ordre et en quantité illimitée. Les décorateurs appuient bien le principe selon lequel les classes doivent être extensibles, mais non modifiables ("SOLID").
 
 Comme on peut ajouter autant de décorateurs que l'on veut sur un objet, on peut se servir de ce principe pour combiner des effets.   
 
-## Faiblesses
+### Faiblesses
 
 Quand on commence à avoir beaucoup de décorateurs, le code devient difficile à maintenir, car tous les décorateurs se ressemblent énormément au niveau du code.
 
@@ -46,8 +71,7 @@ Si l'interface Decorator possède plusieurs méthodes, tous les décorateurs doi
 
 Retirer un décorateur spécifique de la pile est compliqué.
 
-
-### Le Singleton
+## Le Singleton
 Le singleton est un design pattern dont l'objectif est de limiter le nombre d'instance d'une classe, afin de gagner en espace mémoire. Généralement, le singleton limite le nombre d'instance à 1, mais il est possible de faire varier cette valeur.
 
 
@@ -80,7 +104,7 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 
 ## Méthodologie
 
-
+// Expliquer comment on a fait les trucs : Pourquoi on les utilise et comment ?
 
 
 
