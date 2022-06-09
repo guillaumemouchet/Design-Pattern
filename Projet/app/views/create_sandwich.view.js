@@ -14,13 +14,16 @@
       this.submitButton = Helper.createElement('button', buttonClasses);
       this.submitButton.textContent = 'Add ingredient';
 
+      this.removeLastIngredientButton = Helper.createElement('button', "btn bg-danger text-light float-end m-2");
+      this.removeLastIngredientButton.textContent = "Remove last ingredient";
+
       this.totalPriceLabel = Helper.createElement('span');
 
       this.addToCartButton = Helper.createElement('button', buttonClasses);
       this.addToCartButton.textContent = 'Add to cart';
 
       this.availableIngredientsList = Helper.createElement('select', "form-select");
-      this.form.append(this.availableIngredientsList, this.submitButton);
+      this.form.append(this.availableIngredientsList, this.submitButton, this.removeLastIngredientButton);
 
       this.title = Helper.createElement('h1', 'mt-5 mb-3');
       this.title.textContent = 'Create a sandwich';
@@ -90,6 +93,15 @@
         {
           handler(ingredientName, ingredientPrice);
         }
+      });
+    }
+
+    bindRemoveLastIngredient(handler)
+    {
+      this.removeLastIngredientButton.addEventListener('click', event => {
+        event.preventDefault();
+
+        handler();
       });
     }
 

@@ -13,6 +13,8 @@
       this.view.bindAddIngredient(this.handleAddIngredient)
 
       this.view.bindAddtoCartSanwidch(this.handleAddToCart);
+
+      this.view.bindRemoveLastIngredient(this.handleRemoveLastIngredient);
   
       // Display initial ingredients
       this.onIngredientListChanged(Ingredient.fetchAll());
@@ -27,6 +29,15 @@
       this.sandwich = new IngredientDeco(this.sandwich, name, price);
       this.sandwich.save();
       this.onIngredientListChanged(Ingredient.fetchAll());
+    }
+
+    handleRemoveLastIngredient = () => {
+      if(this.sandwich.sandwich != undefined)
+      {
+        this.sandwich = this.sandwich.sandwich;
+      }
+      this.sandwich.save();
+      this.view.displayCurrentSandwich(this.sandwich);
     }
 
     handleAddToCart = () => {
