@@ -25,22 +25,30 @@
       this.title = Helper.createElement('h1', 'mt-5 mb-3');
       this.title.textContent = 'Create a sandwich';
 
-      this.sandwichIngredientsList = Helper.createElement('ul', "list-group");
+      this.col = Helper.createElement('div', 'col');
+      this.card = Helper.createElement('div', 'card mt-2');
+      this.cardbody = Helper.createElement('div', 'card-body');
+      this.cardtitle = Helper.createElement('h5', 'card-title');
+      this.cardtext = Helper.createElement('ul', 'card-text');
       
-      this.app.append(this.title, this.form, this.sandwichIngredientsList, this.totalPriceLabel, this.addToCartButton);
+      this.cardbody.append(this.cardtitle, this.cardtext);
+      this.card.append(this.cardbody);
+      this.col.append(this.card);
+      
+      this.app.append(this.title, this.form, this.col, this.addToCartButton);
     }
 
     displayCurrentSandwich(sandwich)
     {
       // Delete all nodes
-      while (this.sandwichIngredientsList.firstChild)
+      while (this.cardtext.firstChild)
       {
-        this.sandwichIngredientsList.removeChild(this.sandwichIngredientsList.firstChild);
+        this.cardtext.removeChild(this.cardtext.firstChild);
       }
 
-      this.sandwichIngredientsList.innerHTML = (sandwich.getNameAsList());
+      this.cardtext.innerHTML = sandwich.getNameAsList();
 
-      this.totalPriceLabel.textContent = "Total : " + sandwich.calculatePrice().toFixed(2) + " CHF";
+      this.cardtitle.innerHTML = "Sandwich price : <span class='float-end'>" + sandwich.calculatePrice().toFixed(2) + " CHF</span>";
     }
   
     displayAvailableIngredients(ingredients) {
