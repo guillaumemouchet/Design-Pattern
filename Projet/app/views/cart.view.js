@@ -11,6 +11,9 @@ class CartView {
 
     this.title.textContent = 'Your cart';
 
+    this.noResultText = Helper.createElement("h5", "d-none");
+    this.noResultText.textContent = "No sandwich in your cart yet."
+
     let buttonClasses = 'btn btn-info text-light m-2';
 
     this.passCommandButton = Helper.createElement('button', buttonClasses + " mt-2");
@@ -20,14 +23,19 @@ class CartView {
 
     this.totalPrice = Helper.createElement('h3', "mt-3");
 
-    this.app.append(this.title, this.sandwichesList, this.totalPrice, this.text, this.passCommandButton);
+    this.app.append(this.title, this.noResultText, this.sandwichesList, this.totalPrice, this.text, this.passCommandButton);
   }
 
   displayCart(command)
   {
     let totalPrice = 0;
 
-    if(command.sandwiches.length == 0) this.passCommandButton.classList.add("d-none");
+    if(command.sandwiches.length == 0) 
+    {
+      console.log("test"),
+      this.passCommandButton.classList.add("d-none");
+      this.noResultText.classList.remove("d-none");
+    }
 
     command.sandwiches.forEach(sandwich => {
       let col = Helper.createElement('div', 'col');
