@@ -4,18 +4,18 @@
 ---
 ## Contexte
 Dans le cadre du cours de Design Pattern, il nous a été demandé de réaliser un court projet permettant de mettre en place les connaissances acquises durant celui-ci. Il nous fallait utiliser 3 Design Pattern différents dont au moins 2 vu en classe et un autre externe.
-Nous nous sommes inspiré de l'exemple vu en classe sur les différents type de café StarBucks et nous avons voulu faire la même chose mais pour des sandwichs, comme pourrait le faire Subway, ou chaque consommateur peut construire son repas comme il veut.
-Nous avons décider d'utiliser le Design Pattern Decorator afin de nous permettre de facilement ajouter des ingrédients sur dans notre pain, Nous avons aussi mis en place le principe de Modèle-Vue-Controller.
+Nous nous sommes inspiré de l'exemple vu en classe sur les différents type de café StarBuzz et nous avons voulu faire la même chose mais pour des sandwichs, comme pourrait le faire Subway, ou chaque consommateur peut construire son repas comme il veut.
+Nous avons décidé d'utiliser le Design Pattern Decorator afin de nous permettre de facilement ajouter des ingrédients sur dans notre pain, Nous avons aussi mis en place le principe de Modèle-Vue-Controller. Le single ton a été utilisé pour le stockage pour que chaque partie du programme ai une unique instance des ingrédients.
 
 ### Design Pattern
 ## MVC
 Ce pattern met en place un principe primordial dans la programmation, "diviser pour mieux régner", afin d'éviter qu'un application s'occupe de tout faire les responsabilité sont séparée en 3:
-* Le modèle, il s'occupe des données de l'application Web, comment elles sont stockée et les différentes méthodes qui permetterait de les modifiers, comme des setters, getters ou des fetchs dans le cas d'une base de données.
+* Le modèle, il s'occupe des données de l'application Web, comment elles sont stockées et les différentes méthodes qui permetterait de les modifier, comme des setters, getters ou des fetchs dans le cas d'une base de données.
 * La vue, est l'interface graphique de l'application, c'est avec elle que se fait les interactions entre l'utilisateur et le code métier, elle ne contient presque aucune logique, elle s'occupe d'afficher ce qu'on lui donne.
 * Le controller, c'est la qu'on retrouve la logique métier, on trouvera dans les contrôlers, les calculs, les algorithmes et le traitement des données, il fait l'intermédiaire entre la vue et le modèle pour s'assurer que les valeurs que chacun s'envoie sont conformes.
 ## Forces
 Facile à maintenir, vu que les tâches sont séparée il est facile d'aller faire des modifications.
-Le développement peut se faire en parallèle car il n'est pas nécessaire de connaitre le fonctionnement du modèle pour faire fonctionner la vue, il suffit de faire appel à une function du contrôller qui donnera les informations du modèle.
+Le développement peut se faire en parallèle car il n'est pas nécessaire de connaitre le fonctionnement du modèle pour faire fonctionner la vue, il suffit de faire appel à une fonction du contrôller qui donnera les informations du modèle.
 La séparation des vues permet de tester le code de manière plus simple.
 ## Faiblesses
 Il existe des difficultés à utiliser MVC avec le développement front-end moderne (frameworks fronts orientés composants).
@@ -27,7 +27,8 @@ Les interactions entre les vues et les modèles sont bidirectionnels et nombreus
 Un décorateur permet de modifier le comportement d'une classe dynamiquement, sans pour autant modifier son implémentation.
 Il englobe la classe dans une nouvelle classe qui implémente alors les nouveaux comportements. 
 
-Par exemple si on fait un programme qui créer un café Starbucks, et qu'on peut avoir entre 1 et 4 suppléments, il faudrait créer des dizaines de classes pour chaque combinaison possible. À la place de faire ça, on peut ajouter les suppléments à l'exécution (et non à la compilation), on crée alors des "embaleurs" qui implémentent les différents suppléments de notre café et on place l'objet café dans ces emballeurs à l'exécution.
+Dans notre cas on aimerait crée des sandwichs avec des suppléments, sans le décorateur il faudrait créé une classe pour chaque combinaisons de sandwich possible, ce qui est impossible à réaliser si les suppléments peuvent être infini.
+A la place à l'aide du décorateur nous les ajoutons à l'exécution et non à la compilations, on crée des embaleurs qui implémentent les suppléments de notre sandwich, et à l'execution on place notre sandwich dans ces différents emballeurs.
 
 
 ## Forces
@@ -46,12 +47,41 @@ Si l'interface Decorator possède plusieurs méthodes, tous les décorateurs doi
 Retirer un décorateur spécifique de la pile est compliqué.
 
 
+### Le Singleton
+Le singleton est un design pattern dont l'objectif est de limiter le nombre d'instance d'une classe, afin de gagner en espace mémoire. Généralement, le singleton limite le nombre d'instance à 1, mais il est possible de faire varier cette valeur.
 
-## ??????
-## Forces
-## Faiblesses
+
+### Faiblesses Singleton
+Utiliser un singleton complique les tests unitaires. Le couplage entre une classe et un singleton est, du fait que le singleton introduit des états globaux à l'application, un couplage fort. Ce couplage fort empêche les tests unitaires sur une classe seule, on se retrouve à tester la classe et son singleton. 
+
+Utiliser un singleton a tendance à cacher les dépendances. Habituellement, quand une classe a besoin d'une ressource externe, c'est immédiatement visible. Mais dans le cas d'un singleton, quand une classe l'appelle, ça ne se voit pas directement dans le constructeur ou les méthodes.
+
+Si on crée un singleton avec la méthode populaire de lazy loading 
+
+```CPP
+public static Singleton getInstance() {
+    if (instance == null) {
+        instance = new Singleton();
+    }
+    return instance;
+} 
+```
+il est possible de se retrouver avec plusieurs instances de singleton dans le cas où plusieurs thread accèdent en parallèle à la méthode <i>getInstance()</i>.
+
+
+### Forces Singleton
+Un singleton peut servir à coordonner un programme autour d'une unique instance. Par exemple la gameloop d'un jeu est souvent un singleton car on a besoin d'une seule boucle pour tout le jeu.
+
+Une autre force du singleton est son efficacité. En limitant le nombre d'instance en mémoire et en forçant tout le monde à référer à cette unique instance (au lieu d'avoir chaque utilisateur qui crée une nouvelle instance). Ceci économise de la place en mémoire en évitant la redondance.
+
+Le singleton a aussi l'avantage de n'être instancié que quand il est nécessaire (lazy loading).
+
+Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un service. Par exemple, si l'utilisateur est connecté sur un site et qu'il appuie de nouveau sur le bouton connecter, le singleton de connexion étant déjà instancié, l'utilisateur ne sera pas déconnecté.
 
 ## Méthodologie
+
+
+
 
 
 ## Conclusion
@@ -60,12 +90,18 @@ Une problématique est que l'application est censé être en plug and play, ce q
 
 ## Références
 
-https://talks.freelancerepublik.com/comprendre-utiliser-architecture-mvc/#Les_avantages_et_inconvenients_du_pattern_MVC
+Freelance Talks, 2021, L'architescture MVC : bien la comprendre [en ligne], Modifié le 27 juillet 2021, [Consulté le 08 juin 2022]. Disponible à l'adresse : https://talks.freelancerepublik.com/comprendre-utiliser-architecture-mvc/#Les_avantages_et_inconvenients_du_pattern_MVC
 
-https://www.dofactory.com/javascript/design-patterns/decorator#:~:text=The%20Decorator%20pattern%20extends%20(decorates,functionality%20to%20the%20original%20object.
 
+Stack overflow, 2022, Simplest/cleanest way to implement a singleton in JavaScript [en ligne], Modifié en Septembre 2021, [Consutlé le 30 mars 2022]. Disponible à l’adresse : https://stackoverflow.com/questions/1479319/simplest-cleanest-way-to-implement-a-singleton-in-javascript
+
+Vojtech Ruzicka's Programming Blog, 2016, Singleton Pattern Pitfalls [en ligne], Modifié le 3 juillet 2019, [Consulté le 30 mars 2022]. Disponible à l’adresse : https://www.vojtechruzicka.com/singleton-pattern-pitfalls/
+
+Stack overflow, 2022, What is the advantage of Singleton Design Pattern [en ligne], Août 2021, [Consulté le 30 mars 2022]. Disponible à l’adresse :
+https://stackoverflow.com/questions/12901734/what-is-the-advantage-of-singleton-design-pattern
+
+dzone.com, 2022, Is Inheritance Dead? A Detailed Look Into the Decorator Pattern [en ligne], 17 septembre 2019 [en ligne], [Consulté le 26 avril 2022]. Disponible à l'adresse :
+https://dzone.com/articles/is-inheritance-dead
+
+Refactoring.Guru., 2022, Décorateur [en ligne], Date inconnue [consulté le 26 avril 2022]. Disponible à l'adresse :
 https://refactoring.guru/fr/design-patterns/decorator
-
-Liste des différents design patterns : https://refactoring.guru/fr/design-patterns
-
-Exemple d'architecture MVC en Javascript pure : https://www.taniarascia.com/javascript-mvc-todo-app/
