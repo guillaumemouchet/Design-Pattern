@@ -106,6 +106,58 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 
 // Expliquer comment on a fait les trucs : Pourquoi on les utilise et comment ?
 
+### Décorateur
+
+Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet à intégralement été réalisé en Javascript (qui ne possède pas d'interface), nous avons eu recours à des asctures permettant de simuler une clases abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
+
+```javascript
+class ISandwich
+{
+    constructor() {
+        // If the class that is instanciated is Component, throw an exception
+        if (this.constructor == ISandwich) {
+            throw new TypeError(
+                'Abtract class "ISandwich" cannot be instantiated directly.'
+            );
+        }
+
+        // If calculatePrice is not implemented, throw an exeption
+        if (this.calculatePrice === undefined) {
+            throw new TypeError(
+                'Classes extending the abstract class "ISandwich" must contain "calculatePrice()"'
+            );
+        }
+    }
+}
+```
+
+Notre classe *ISandwich* contient les méthodes :
+- ***calculatePrice*** permettant de calculer le prix de l'ingrédient ainsi que ceux qu'il englobe,
+- ***getNameAsList*** permettant d'obtenir, sous forme de liste, les ingrédients composants le sandwich.
+
+Cette classe/interface est implémentée par la classe *Ingredient*, qui doit alors redéfinir ces deux méthodes.
+
+Par la suite, nous avons créé une classe *IngredientDeco*
+
+**À continuer**
+
+### Singleton
+
+Javascript met à disposition une propriété nommée *localStorage*, qui est un espace stockage similaire à une session, mais avec l'avantage de n'avoir pas de délai d'expiration. Cette propriété possède des méthodes rudimentaires permettant de stocker, lire et supprimer des données au format texte et JSON.
+
+Nous avons alors décidé d'englober cet espace de stockage dans une classe nommée *Storage*, afin d'étendre ses fonctionnalités, répondant à nos besoins.
+Cette classe, comme discuté auparavant, est un Singleton ; cela permet de limiter de nombre d'instance de la classe et donc d'économiser la mémoire utiliser par notre programme.
+
+Afin de créer une classe Singleton, il convient d'y ajouter un attribut **statique privé**, qui contiendra l'unique instance. Le constructeur de classe est privé, puisqu'elle peut être uniquement instanciée par la classe elle-même.
+
+Le seul moyen d'accéder à l'instance est la méthode **getInstance()**, qui contrôle si l'instance existe. Si ce n'est pas le cas, elle l'a crée et la place dans l'attribut statique.
+
+**Extrait de code ?**
+
+### MVC
+
+**TODO**
+
 
 
 ## Conclusion
