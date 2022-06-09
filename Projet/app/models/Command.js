@@ -30,6 +30,11 @@ class Command extends Model
         this.sandwiches.push(sandwich);
     }
 
+    removeSandwich(sandwich)
+    {
+        this.sandwiches = Helper.removeItemInArrayOnce(this.sandwiches, sandwich);
+    }
+
     save()
     {
         Model.remove('command');

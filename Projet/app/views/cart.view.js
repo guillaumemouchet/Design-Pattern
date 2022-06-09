@@ -23,6 +23,8 @@ class CartView {
 
     this.totalPrice = Helper.createElement('h3', "mt-3");
 
+    this.buttonsLists = [];
+
     this.app.append(this.title, this.noResultText, this.sandwichesList, this.totalPrice, this.text, this.passCommandButton);
   }
 
@@ -30,9 +32,13 @@ class CartView {
   {
     let totalPrice = 0;
 
+    while (this.sandwichesList.firstChild) 
+    {
+      this.sandwichesList.removeChild(this.sandwichesList.firstChild);
+    }
+
     if(command.sandwiches.length == 0) 
     {
-      console.log("test"),
       this.passCommandButton.classList.add("d-none");
       this.noResultText.classList.remove("d-none");
     }
@@ -43,8 +49,13 @@ class CartView {
       let cardbody = Helper.createElement('div', 'card-body');
       let cardtitle = Helper.createElement('h5', 'card-title');
       let cardtext = Helper.createElement('ul', 'card-text');
+      var removeButton = Helper.createElement('button', 'btn btn-danger text-light');
+      removeButton.textContent = "Delete";
+      removeButton.sandwich = sandwich;
+      this.buttonsLists.push(removeButton);
 
       cardtext.innerHTML = sandwich.getNameAsList();
+      cardtext.append(removeButton);
 
       cardtitle.innerHTML = "Sandwich price : <span class='float-end'>" + sandwich.calculatePrice().toFixed(2) + " CHF</span>";
 
@@ -59,6 +70,20 @@ class CartView {
       totalPrice += sandwich.calculatePrice();
     });
     this.totalPrice.textContent = "Command price : " + totalPrice.toFixed(2) + " CHF";
+  }
+
+  bindRemoveSandwich(handler)
+  {
+    this.buttonsLists.forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault();
+
+        handler(button.sandwich);
+      });
+    });
+    
+    // Reset the buttons list
+    this.buttonsLists = [];
   }
 
   bindPassCommand(handler)

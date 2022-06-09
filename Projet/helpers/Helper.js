@@ -24,4 +24,13 @@ class Helper
     {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+    static removeItemInArrayOnce(arr, value)
+    {
+        var index = arr.indexOf(value);
+        if (index > -1) {
+            arr.splice(index, 1);
+        }
+        return arr;
+    }
 }
