@@ -35,6 +35,12 @@ class Ingredient extends Model
         return Ingredient.parseSandwichFromJson(Model.fetchAsText('sandwich'));
     }
 
+
+    /**
+     * Create a decorated sandwich from JSON
+     * @param {JSON} json Decorated sandwich in JSON format
+     * @returns 
+     */
     static parseSandwichFromJson(json)
     {
         if(json == null || json == undefined)
@@ -62,31 +68,19 @@ class Ingredient extends Model
         return sandwich; 
     }
 
-    static parseSandwich(currentDeco)
-    {
-        let lstDeco = [];
-
-        while(currentDeco)
-        {
-            lstDeco.push(currentDeco);
-            currentDeco = currentDeco.sandwich;
-        }
-
-        let sandwich = new Pain();
-
-        for(let i = lstDeco.length - 2; i >= 0; i--)
-        {
-            sandwich = new IngredientDeco(sandwich, lstDeco[i].name, lstDeco[i].price);
-        }
-
-        return sandwich; 
-    }
-
+    /**
+     * Get the price of the ingredient
+     * @returns {float} Price
+     */
     calculatePrice()
     {
         return this.price;
     }
 
+    /**
+     * Get the ingredient as a list element
+     * @returns {string} HTML
+     */
     getNameAsList()
     {
         return '<li list-group-item d-flex justify-content-between align-items-center">' + this.name + '<span class="badge bg-info text-light rounded-pill float-end">'+ this.price +' CHF</span></li>';
