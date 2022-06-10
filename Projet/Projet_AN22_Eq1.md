@@ -318,8 +318,9 @@ const app = new controller();
 
 // Appeler la méthode du controller
 app[method]();
-
 ```
+
+Pour intégrer les autres vues et controllers (CommandController p.e.), nous avons suivi la même démarche.
 
 ## Conclusion
 Pour conclure le projet rempli les objectifs que nous nous étions donnés. Le site permet de simuler une commande de sandwich en utilisant de manière intelligente les différents Design Pattern choisi. 
