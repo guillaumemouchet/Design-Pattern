@@ -110,7 +110,7 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 
 Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet à intégralement été réalisé en Javascript (qui ne possède pas d'interface), nous avons eu recours à des asctures permettant de simuler une clases abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
 
-```javascript
+```js
 class ISandwich
 {
     constructor() {
@@ -152,9 +152,97 @@ Afin de créer une classe Singleton, il convient d'y ajouter un attribut **stati
 
 Le seul moyen d'accéder à l'instance est la méthode **getInstance()**, qui contrôle si l'instance existe. Si ce n'est pas le cas, elle l'a crée et la place dans l'attribut statique.
 
+L'extrait de code suivant est un très simple exemple de mise en place d'un Singleton en Javascript :
+
+```js
+class Storage 
+{
+    // Instance privée, initialement à null
+    static #storageInstance = null;
+
+    // Méthode de récupération de l'instance
+    static getInstance()
+    {
+        // Si l'instance n'existe pas
+        if(Storage.#storageInstance == null)
+        {
+            // Elle est alors créée et placée dans l'attribut
+            Storage.#storageInstance = new Storage();
+        }
+
+        // Puis, dans tous les cas, elle est retournée
+        return Storage.#storageInstance;
+    }
+
+    methodXX()
+    {
+        ...
+    }
+
+    methodXY()
+    {
+        ...
+    }
+}
+
+```
+
 **Extrait de code ?**
 
 ### MVC
+
+Premièrement, après avoir mis en place notre espace de stockage, nous nous sommes penchés sur la partie "Modèle".
+Afin d'obtenir le code le plus générique possible, nous avons créé une classe nommée *Model*. Celle-ci possède des méthodes statiques privées, telles que *save()*, *update()*, *delete()*, *fetch()*, ainsi que *fetchAll()*, qui seront utilisées dans nos modèles concrets.
+
+Le premier modèle dont nous avons eu besoin fut le *Ingredient*, qui possède un nom ainsi qu'un prix en tant qu'attributs. Étant donné que notre application ne possède pas de gestion des ingrédients, et que ceux-ci sont stockés lors du lancement de l'application, nous n'avons pas eu besoin d'implémenter le CRUD en entier. Seules les méthodes *fetch()* et *fetchAll*, permettant de récupérer des ingrédients, ont été nécessaires.
+
+Par la suite, nous avons modifié notre classe *IngredientDeco* pour que celle-ci hérite également de la classe *Model*. Comme les décorateurs représentent un sandwich, contrairement au modèle *Ingredient*, et qu'un doit sandwich doit pouvoir être enregistré, il a été nécessaire d'implémenter toutes les fonctions du CRUD.
+
+Maintenant que nos modèles principaux sont créés, nous pouvons passer à la phase suivante afin de tester s'ils fonctionnent correctement.
+
+Nous avons alors créé le controller *SandwichController*, qui s'occupe de récupérer les ingrédients (sandwichs) ainsi que le sandwich en train d'être créé, et de les transmettre à la vue afin que celle-ci puisse les afficher. Il doit donc avoir accès à la vue, ainsi qu'aux ingrédients et au sandwich.
+
+Tout cela se fait dans une méthode appelée *showCreateSandwichView* : 
+
+```js
+class SandwichController 
+ {
+    showCreateSandwichView()
+    {
+        // Récupération de la vue
+        this.view = new CreateSandwichView();
+        // Récupération du sandwich
+        this.sandwich = Ingredient.fetchSandwich();
+    }
+    ...
+ }
+```
+
+La classe *CreateSandwichView* met en place, dans son constructeur, les éléments principaux de la page (titre, boutons, ...). Elle possède également les méthodes *displayCurrentSandwich* et *displayAvailableIngredients*, prenant comme paramètres, respectivement le sandwich courant et la liste des ingrédients.
+
+Dans ces deux fonctions, elle passe en revue les différents éléments, puis ajoute les éléments nécessaires au DOM afin de créer un affichage.
+
+Nous pouvons donc, depuis notre controller, appeler ces deux méthodes :
+
+```js
+class SandwichController 
+ {
+    showCreateSandwichView()
+    {
+        // Récupération de la vue
+        this.view = new CreateSandwichView();
+        // Récupération du sandwich
+        this.sandwich = Ingredient.fetchSandwich();
+
+        // Demande à la vue d'afficher la liste d'ingrédients
+        this.view.displayAvailableIngredients(ingredients);
+        // Demande à la vue d'afficher le sandwich courant
+        this.view.displayCurrentSandwich(this.sandwich);
+    }
+    ...
+ }
+```
+
 
 **TODO**
 
