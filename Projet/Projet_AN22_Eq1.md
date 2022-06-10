@@ -81,9 +81,11 @@ Utiliser un singleton a tendance à cacher les dépendances. Habituellement, qua
 Si on crée un singleton avec la méthode populaire de lazy loading 
 
 ```CPP
-public static Singleton getInstance() {     if (instance == null) {         instance = new Singleton();
+public static Singleton getInstance() {     
+if (instance == null) {         
+    instance = new Singleton();
 }
-return instance;
+    return instance;
 } 
 ```
 Il est possible de se retrouver avec plusieurs instances de singleton dans le cas où plusieurs thread accèdent en parallèle à la méthode <i>getInstance()</i>.
@@ -104,12 +106,19 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet a intégralement été réalisé en JavaScript (qui ne possède pas d'interface), nous avons eu recours à des asctures permettant de simuler une classe abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
 
 ```js class ISandwich {
-constructor() {         // If the class that is instanciated is Component, throw an exception         if (this.constructor == ISandwich) {             throw new TypeError(                 'Abtract class "ISandwich" cannot be instantiated directly.'
-);
-}
+constructor() {         
+    // If the class that is instanciated is Component, throw an exception         
+    if (this.constructor == ISandwich) {             
+        throw new TypeError('Abtract class "ISandwich" cannot be instantiated directly.');
+    }
 
-// If calculatePrice is not implemented, throw an exeption         if (this.calculatePrice === undefined) {             throw new TypeError(                 'Classes extending the abstract class "ISandwich" must contain "calculatePrice()"'             );
-}     } }
+// If calculatePrice is not implemented, throw an exeption 
+        if (this.calculatePrice === undefined) {             
+            throw new TypeError('Classes extending the abstract class "ISandwich" must contain "calculatePrice()"');
+
+    } 
+}  
+
 ```
 
 Notre classe *ISandwich* contient les méthodes :
@@ -120,7 +129,9 @@ Cette classe/interface est implémentée par la classe *Ingredient*, qui doit al
 
 Par la suite, nous avons créé une classe *IngredientDeco*, qui possède, en plus des attributs de la classe *Ingredient*, le champ "sandwich", qui représente le sandwich qu'il décore. Cette classe doit redéfinir les deux méthodes ci-dessus, en appelant d'abord celles du fichier qu'il encapsule.
 
-```js calculatePrice() {
+```js 
+
+calculatePrice() {
 return this.sandwich.calculatePrice() + this.price;
 }
 
@@ -131,13 +142,15 @@ return this.sandwich.getNameAsList() + 'Nom : ' + this.name + ', Prix : '+ this.
 
 L'exemple suivant démontre la création d'un ingrédient *Pain*, décoré ensuite avec l'ingrédient *Salade*.
 
-```js let pain = new Ingredient("Pain", 1.2);
+```js 
+let pain = new Ingredient("Pain", 1.2);
 
 pain.calculatePrice(); // 1.2 pain.getNameAsList(); // Nom : Pain, Prix : 1.2 CHF
 
 let painAvecSalade = new IngredientDeco(pain, "Salade", 0.5);
 
-painAvecSalade.calculatePrice(); // 1.7 painAvecSalade.getNameAsList();
+painAvecSalade.calculatePrice(); // 1.7 
+painAvecSalade.getNameAsList();
 // Nom : Pain, Prix : 1.2 CHF // Nom : Salade, Prix : 0.5 CHF
 
 ```
@@ -158,14 +171,19 @@ Le seul moyen d'accéder à l'instance est la méthode **getInstance()**, qui co
 L'extrait de code suivant est un exemple très simple d'un Singleton en JavaScript :
 
 ```js class Storage  {
-// Instance privée, initialement à null     static #storageInstance = null;
+// Instance privée, initialement à null     
+static #storageInstance = null;
 
-// Méthode de récupération de l'instance     static getInstance()     {
-// Si l'instance n'existe pas         if(Storage.#storageInstance == null)         {
-// Elle est alors créée et placée dans l'attribut             Storage.#storageInstance = new Storage();
+// Méthode de récupération de l'instance     
+static getInstance()     {
+// Si l'instance n'existe pas         
+if(Storage.#storageInstance == null) {
+// Elle est alors créée et placée dans l'attribut    
+    Storage.#storageInstance = new Storage();
 }
 
-// Puis, dans tous les cas, elle est retournée         return Storage.#storageInstance;
+// Puis, dans tous les cas, elle est retournée         
+return Storage.#storageInstance;
 }
 
 methodXX() { /* ... */ }
@@ -191,8 +209,10 @@ Tout cela se fait dans une méthode appelée *showCreateSandwichView* :
 
 ```js class SandwichController   {
 showCreateSandwichView()     {
-// Récupération de la vue         this.view = new CreateSandwichView();
-// Récupération du sandwich         this.sandwich = Ingredient.fetchSandwich();
+// Récupération de la vue         
+this.view = new CreateSandwichView();
+// Récupération du sandwich         
+this.sandwich = Ingredient.fetchSandwich();
 }
 ...
 }
@@ -206,11 +226,15 @@ Nous pouvons donc, depuis notre controller, appeler ces deux méthodes :
 
 ```js class SandwichController   {
 showCreateSandwichView()     {
-// Récupération de la vue         this.view = new CreateSandwichView();
-// Récupération du sandwich         this.sandwich = Ingredient.fetchSandwich();
+// Récupération de la vue         
+this.view = new CreateSandwichView();
+// Récupération du sandwich         
+this.sandwich = Ingredient.fetchSandwich();
 
-// Demande à la vue d'afficher la liste d'ingrédients         this.view.displayAvailableIngredients(Ingredient.fetchAll());
-// Demande à la vue d'afficher le sandwich courant         this.view.displayCurrentSandwich(this.sandwich);
+// Demande à la vue d'afficher la liste d'ingrédients         
+this.view.displayAvailableIngredients(Ingredient.fetchAll());
+// Demande à la vue d'afficher le sandwich courant         
+this.view.displayCurrentSandwich(this.sandwich);
 }
 ...
 }
@@ -226,7 +250,9 @@ L'astuce suivante a été utilisée afin de tout de même rendre le routage poss
 Notre application est maintenant capable de récupérer la route, mais ne sait toujours pas quel controller utiliser. Il est nécessaire de stocker chaque route et son controller + méthode correspondante. Cela a été fait un fichier séparé, nommé *routes.js*, ayant la structure suivante :
 
 ```js const routes = {     "index" : // Route     {
-"controller" : IndexController, // Controller         "method" : 'index' // Méthode du controller     },
+"controller" : IndexController, // Controller         
+"method" : 'index' // Méthode du controller     
+},
 "create_sandwich" :     {
 "controller" : SandwichController,         "method" : 'showCreateSandwichView'     },
 "unknown" :     {
@@ -237,19 +263,26 @@ En reprenant tous ces aspects, le routeur devient alors :
 
 ```js // Récupération des potentiels paramètres de l'URL const params = new URLSearchParams(window.location.search);
 
-// Récupération du paramètre "route" let routeParam = params.get("route");
+// Récupération du paramètre "route" 
+let routeParam = params.get("route");
 
-// Si la route n'est pas définie dans le fichier "routes.js" if(routes[routeParam] == undefined) {
-// Modifier la route pour "inconnue"     routeParam = "unknown";
+// Si la route n'est pas définie dans le fichier "routes.js" 
+if(routes[routeParam] == undefined) {
+// Modifier la route pour "inconnue"     
+routeParam = "unknown";
 }
 
-// Récupérer le controller correspondant const controller = routes[routeParam].controller;
+// Récupérer le controller correspondant 
+const controller = routes[routeParam].controller;
 
-// Récupérer la méthode correspondante const method = routes[routeParam].method;
+// Récupérer la méthode correspondante 
+const method = routes[routeParam].method;
 
-// Créer une instance du controller const app = new controller();
+// Créer une instance du controller
+const app = new controller();
 
-// Appeler la méthode du controller app[method]();
+// Appeler la méthode du controller 
+app[method]();
 ```
 
 Pour intégrer les autres vues et controllers (CommandController p.e.), nous avons suivi la même démarche.
