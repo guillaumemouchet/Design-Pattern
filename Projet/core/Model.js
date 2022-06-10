@@ -25,6 +25,11 @@
         return new classname(jsonData);
     }
 
+    static fetchAsText(name)
+    {
+        return Storage.getInstance().retrieveAsText(name);
+    }
+
     static save(obj, name)
     {
         Storage.getInstance().saveObject(name, obj);
