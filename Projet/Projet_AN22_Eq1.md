@@ -289,10 +289,11 @@ Pour intégrer les autres vues et controllers (CommandController p.e.), nous avo
 
 ## Conclusion
 Pour conclure, le projet remplit les objectifs que nous nous étions donnés. Le site permet de simuler une commande de sandwich en utilisant de manière intelligente les différents Design Pattern choisis. 
-Une problématique est que l'application est censée être en plug and play, ce qui rend impossible d'utiliser les outils vus pendant le cours d'application Web de Marc Schaeffer, comme DevServer et EasyPHP, nous avons donc opté pour simuler un router afin de quand même pouvoir avoir un site web avec des redirections sémantiques, pour parvenir à ce résultat.
+Une problématique est que l'application est censée être en plug and play, ce qui rend impossible d'utiliser les outils vus pendant le cours d'application Web de Marc Schaeffer, comme DevServer et EasyPHP, nous avons donc opté pour simuler un router afin de quand même pouvoir avoir un site web avec des redirections sémantiques, pour parvenir à ce résultat. Afin de mettre en place ce modèle MVC nous nous sommes inspiré de l'implémentation de Tania Racsia sur GitHub.
 
 ## Références
 
+GitHub, 2022, Tania Rascia MVC[en ligne], modifié le 11 septembre 2019 [Consulté de 02 juin 2022]. Disponible à l'adresse : https://github.com/taniarascia/mvc
 Freelance Talks, 2021, l'architecture MVC : bien la comprendre [en ligne], modifié le 27 juillet 2021 [consulté le 08 juin 2022]. Disponible à l'adresse : https://talks.freelancerepublik.com/comprendre-utiliser-architecture-mvc/#Les_avantages_et_inconvenients_du_pattern_MVC
 
 Stack overflow, 2022, Simplest/cleanest way to implement a singleton in JavaScript [en ligne], Modifié en Septembre 2021, [Consulté le 30 mars 2022]. Disponible à l’adresse : https://stackoverflow.com/questions/1479319/simplest-cleanest-way-to-implement-a-singleton-in-javascript
