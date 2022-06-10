@@ -1,4 +1,4 @@
-# Mini Rapport Projet - MakeAWich
+# Mini Rapport Projet - SandwichMaker
 ### Cours de Design Pattern - Juin 2022
 ### Equipe 1 : Nicolas Aubert, Alexandre Besia, Guillaume Mouchet
 ---
