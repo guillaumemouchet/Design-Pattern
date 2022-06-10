@@ -104,8 +104,6 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 
 ## Méthodologie
 
-// Expliquer comment on a fait les trucs : Pourquoi on les utilise et comment ?
-
 ### Décorateur
 
 Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet à intégralement été réalisé en Javascript (qui ne possède pas d'interface), nous avons eu recours à des asctures permettant de simuler une clases abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
@@ -152,7 +150,7 @@ Afin de créer une classe Singleton, il convient d'y ajouter un attribut **stati
 
 Le seul moyen d'accéder à l'instance est la méthode **getInstance()**, qui contrôle si l'instance existe. Si ce n'est pas le cas, elle l'a crée et la place dans l'attribut statique.
 
-L'extrait de code suivant est un très simple exemple de mise en place d'un Singleton en Javascript :
+L'extrait de code suivant est un exemple très simple d'un Singleton en Javascript :
 
 ```js
 class Storage 
@@ -174,20 +172,12 @@ class Storage
         return Storage.#storageInstance;
     }
 
-    methodXX()
-    {
-        ...
-    }
+    methodXX() { /* ... */ }
 
-    methodXY()
-    {
-        ...
-    }
+    methodXY() { /* ... */ }
 }
 
 ```
-
-**Extrait de code ?**
 
 ### MVC
 
@@ -235,18 +225,72 @@ class SandwichController
         this.sandwich = Ingredient.fetchSandwich();
 
         // Demande à la vue d'afficher la liste d'ingrédients
-        this.view.displayAvailableIngredients(ingredients);
+        this.view.displayAvailableIngredients(Ingredient.fetchAll());
         // Demande à la vue d'afficher le sandwich courant
         this.view.displayCurrentSandwich(this.sandwich);
     }
     ...
  }
 ```
+La liste d'ingrédients est récupérée, comme expliqué précédemment, depuis le modèle correspondant.
 
+Maintenant que les trois parties du MVC sont implémentées, nous avons besoin d'un mécanisme permettant d'instancier le bon controller et appeler sa bonne méthode, en fonction de la route (URI). Ceci est le principe d'un *routeur*.
 
-**TODO**
+Comme notre application doit être plug-and-play, nous avons choisi de ne pas utiliser de serveur particulier, ce qui a compliqué la tâche de création du routeur. En effet, sans serveur, il n'est pas possible de récupérer la route */create_sandwich* et de l'URL *chemin/du/fichier/index.html/create_sandwich*, puisque le navigateur considère cela comme un fichier.
 
+L'astuce suivante a été utilisée afin de tout de même rendre le routage possible : la route est précisée dans un paramètre de l'URL, nommé *route*. En reprenant l'exemple précédent, l'URl devient alors *chemin/du/fichier/index.html&route=create_sandwich*, où la route est *create_sandwich*.
 
+Notre application est maintenant capable de récupérer la route, mais ne sait toujours pas quel controller utilisé. Il est nécessaire de stocker chaque route et son controller + méthode correspondants. Cela a été fait un fichier séparé, nommé *routes.js*, ayant la structure suivante :
+
+```js
+const routes = {
+    "index" : // Route
+    {
+        "controller" : IndexController, // Controller
+        "method" : 'index' // Méthode du controller
+    },
+    "create_sandwich" :
+    {
+        "controller" : SandwichController,
+        "method" : 'showCreateSandwichView'
+    },
+    "unknown" :
+    {
+        "controller" : IndexController,
+        "method" : "showUnknownRoute"
+    }
+}
+```
+
+En reprenant tous ces aspects, le routeur devient alors :
+
+```js
+// Récupération des potentiels paramètres de l'URL
+const params = new URLSearchParams(window.location.search);
+
+// Récupération du paramètre "route"
+let routeParam = params.get("route");
+
+// Si la route n'est pas définie dans le fichier "routes.js"
+if(routes[routeParam] == undefined)
+{
+    // Modifier la route pour "inconnue"
+    routeParam = "unknown";
+}
+
+// Récupérer le controller correspondant
+const controller = routes[routeParam].controller;
+
+// Récupérer la méthode correspondante
+const method = routes[routeParam].method;
+
+// Créer une instance du controller
+const app = new controller();
+
+// Appeler la méthode du controller
+app[method]();
+
+```
 
 ## Conclusion
 Pour conclure le projet rempli les objectifs que nous nous étions donnés. Le site permet de simuler une commande de sandwich en utilisant de manière intelligente les différents Design Pattern choisi. 
