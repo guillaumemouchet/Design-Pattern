@@ -135,9 +135,38 @@ Notre classe *ISandwich* contient les méthodes :
 
 Cette classe/interface est implémentée par la classe *Ingredient*, qui doit alors redéfinir ces deux méthodes.
 
-Par la suite, nous avons créé une classe *IngredientDeco*
+Par la suite, nous avons créé une classe *IngredientDeco*, qui possède, en plus des attributs de la classe *Ingredient*, le champ "sandwich", qui représente le sandwich qu'il décore. Cette classe doit redéfinir les deux méthodes ci-dessus, en appelant d'abord celles du fichier qu'il encapsule.
 
-**À continuer**
+```js
+calculatePrice()
+{
+    return this.sandwich.calculatePrice() + this.price;
+}
+
+getNameAsList()
+{
+    return this.sandwich.getNameAsList() + 'Nom : ' + this.name + ', Prix : '+ this.price +' CHF\n';
+}
+```
+
+L'exemple suivant démontre la création d'un ingrédient *Pain*, décoré ensuite avec l'ingrédient *Salade*.
+
+```js
+let pain = new Ingredient("Pain", 1.2);
+
+pain.calculatePrice(); // 1.2
+pain.getNameAsList(); // Nom : Pain, Prix : 1.2 CHF
+
+let painAvecSalade = new IngredientDeco(pain, "Salade", 0.5);
+
+painAvecSalade.calculatePrice(); // 1.7
+painAvecSalade.getNameAsList();
+// Nom : Pain, Prix : 1.2 CHF
+// Nom : Salade, Prix : 0.5 CHF
+
+```
+
+**Étoffer peut-être?**
 
 ### Singleton
 
