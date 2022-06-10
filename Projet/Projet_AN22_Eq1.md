@@ -1,6 +1,6 @@
 # Mini Rapport Projet - MakeAWich
 ### Cours de Design Pattern - Juin 2022
-### Equipe 5 : Nicolas Aubert, Alexandre Besia, Guillaume Mouchet
+### Equipe 1 : Nicolas Aubert, Alexandre Besia, Guillaume Mouchet
 ---
 ## Contexte
 Dans le cadre du cours de Design Pattern, nous avons réalisé un court projet permettant de consolider les connaissances acquises durant celui-ci. Il nous fallait utiliser 3 Design Pattern différents dont au moins 2 vus en classe et un autre externe.
