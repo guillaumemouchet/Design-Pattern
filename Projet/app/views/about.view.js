@@ -5,6 +5,7 @@
  {
     constructor()
     {
+      // Create elements
       this.app = Helper.getElement('#root');
       this.title = Helper.createElement('h1', "mt-5 mb-3");
       this.title.textContent = 'About';
@@ -13,6 +14,7 @@
       this.createButton = Helper.createElement('button', 'btn btn-info text-light m-3');
       this.createButton.textContent = 'Start creating a sandwich';
 
+      // Add a click event to the button
       this.createButton.addEventListener('click', event => {
         event.preventDefault();
 
@@ -20,6 +22,7 @@
         Helper.redirect('create_sandwich');
       });
       
+      // Add these elements to the root
       this.app.append(this.title, this.text,this.createButton);
   }
 }

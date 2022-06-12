@@ -5,8 +5,10 @@
  {
     constructor()
     {
+      // Get the root element
       this.app = Helper.getElement('#root');
 
+      // Create HTML elements
       this.informationTitle = Helper.createElement('h1', "text-center mt-5 mb-3");
       this.informationTitle.innerHTML = "Unknown route"
 
@@ -16,6 +18,7 @@
       this.createButton = Helper.createElement('button', 'btn btn-info text-light m-3');
       this.createButton.textContent = 'Go to Homepage';
 
+      // Add a click event to the create button
       this.createButton.addEventListener('click', event => {
         event.preventDefault();
 
@@ -23,6 +26,7 @@
         Helper.redirect('index');
       });
       
+      // Add these elements to the root
       this.app.append(this.informationTitle, this.informationText, this.createButton);
   }
 }
