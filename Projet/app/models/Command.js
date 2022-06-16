@@ -23,7 +23,7 @@ class Command extends Model
             {
                 // Parse all the sandwiches
                 jsonCommand.sandwiches.forEach(sandwich => {
-                    this.sandwiches.push(Ingredient.parseSandwich(sandwich));
+                    this.sandwiches.push(Ingredient.parseSandwichFromJSON(sandwich));
                 });
             }
             else

@@ -32,23 +32,50 @@ class Ingredient extends Model
      */
     static fetchSandwich()
     {
-        return Ingredient.parseSandwichFromJson(Model.fetchAsText('sandwich'));
+        return Ingredient.parseSandwichFromText(Model.fetchAsText('sandwich'));
     }
 
 
-    /**
-     * Create a decorated sandwich from JSON
-     * @param {JSON} json Decorated sandwich in JSON format
-     * @returns 
-     */
-    static parseSandwichFromJson(json)
+    static parseSandwichFromJSON(json)
     {
         if(json == null || json == undefined)
         {
             return new Pain();
         }
 
-        let currentDeco = JSON.parse(json);
+        let currentDeco = json;
+
+        let lstDeco = [];
+
+        while(currentDeco)
+        {
+            lstDeco.push(currentDeco);
+            currentDeco = currentDeco.sandwich;
+        }
+
+        let sandwich = new Pain();
+
+        for(let i = lstDeco.length - 2; i >= 0; i--)
+        {
+            sandwich = new IngredientDeco(sandwich, lstDeco[i].name, lstDeco[i].price);
+        }
+
+        return sandwich; 
+    }
+
+    /**
+     * Create a decorated sandwich from JSON
+     * @param {JSON} json Decorated sandwich in JSON format
+     * @returns 
+     */
+    static parseSandwichFromText(text)
+    {
+        if(text == null || text == undefined || text == "")
+        {
+            return new Pain();
+        }
+
+        let currentDeco = JSON.parse(text);
 
         let lstDeco = [];
 
