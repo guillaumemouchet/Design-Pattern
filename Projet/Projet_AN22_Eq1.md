@@ -3,7 +3,7 @@
 ### Équipe 1 : Nicolas Aubert, Alexandre Besia, Guillaume Mouchet
 ---
 ## Contexte
-Dans le cadre du cours de Design Pattern, nous avons réalisé un court projet permettant de consolider les connaissances acquises durant celui-ci. Il nous fallait utiliser 3 Design Pattern différents dont au moins 2 vus en classe et un autre externe.
+Dans le cadre du cours de Design Pattern, nous avons réalisé un court projet permettant de consolider les connaissances acquises durant celui-ci. Il nous fallait utiliser trois Design Patterns différents dont au moins deux vus en classe et un autre externe.
 
 ## Projets
 
@@ -11,9 +11,7 @@ Nous nous sommes inspirés de l'exemple vu en classe sur les différents types d
 
 Afin de faciliter l'implémentation de la partie "personnalisation d'un sandwich", nous avons utilisé le Design Pattern <i>Décorateur</i>.
 
-**Étoffer**
-
-Nous avons décidé de réaliser une application web (site web) afin de fournir une interface universelle pour les utilisateurs. Pour avoir une structure fonctionnelle, intéressante et simple, avec l'accord de M Gobron, nous avons utilisé une architecture MVC (Model-View-Controller). Nous reviendrons plus en détail sur celle-ci plus tard.
+Nous avons décidé de réaliser une application web (site web) afin de fournir une interface universelle pour les utilisateurs. Pour avoir une structure fonctionnelle, intéressante et simple, avec l'accord de M. Gobron, nous avons utilisé une architecture MVC (Model-View-Controller). Nous reviendrons plus en détails sur celle-ci plus tard.
 
 Finalement, comme nous voulions intégrer un système de panier / commande, nous avons eu alors besoin d'un espace de stockage. C'est pourquoi nous avons pensé au Design Pattern Singleton, afin de limiter à un le nombre d'instances de notre classe de stockage.
 
@@ -25,31 +23,33 @@ Ce pattern, de type **architectural**,  met en place un principe primordial dans
 
 ### Les modèles
 
-Le modèle, il s'occupe des données de l'application Web, comment elles sont stockées et les différentes méthodes qui permettrait de les modifier, comme des setters, getters ou des fetchs dans le cas d'une base de données.
+Le modèle s'occupe des données de l'application Web, comment elles sont stockées et les différentes méthodes qui permettraient de les modifier, comme des setters, getters ou des fetchs dans le cas d'une base de données.
 
 ### Les vues
 
-La vue, est l'interface graphique de l'application, c'est avec elle que se fait les interactions entre l'utilisateur et le code métier, elle ne contient presque aucune logique, elle s'occupe d'afficher ce qu'on lui donne.
+La vue est l'interface graphique de l'application, c'est avec elle que se fait les interactions entre l'utilisateur et le code métier. Elle ne contient presque aucune logique et s'occupe uniquement d'afficher les données (modèles).
 
 ### Les Controllers
 
-Le controller, c'est la qu'on retrouve la logique métier, on trouvera dans les controllers, les calculs, les algorithmes et le traitement des données, il fait l'intermédiaire entre la vue et le modèle pour s'assurer que les valeurs que chacun s'envoie sont conformes.
+Le controller contient la logique métier : les calculs, les algorithmes ainsi que le traitement des données. Un controller lie le modèle et la vue. Il récupère les données nécessaires (base de données ou autre), puis les transmet à la vue correspondante, qui s'occupera de les afficher correctement.
+Un controller peut également récupérer des données entrées par l'utilisateur, pour ensuite les traiter (contrôle de saisie, etc.), et potentiellement les enregistrer ou les mettre à jour dans une base de données.
 
 ### Forces
 
-Facile à maintenir, vu que les tâches sont séparées il est facile d'aller faire des modifications.
-Le développement peut se faire en parallèle, car il n'est pas nécessaire de connaître le fonctionnement du modèle pour faire fonctionner la vue, il suffit de faire appel à une fonction du controller qui donnera les informations du modèle.
-La séparation des vues permet de tester le code de manière plus simple.
+Facile à maintenir car les tâches sont séparées : l'ajout ainsi que la modification de fonctionnalités sont alors simplifiés.
+
+Comme le modèle ne connait pas la vue, il est possible de les développer en parallèle. Il suffira par la suite, dans le bon controller, d'ajouter une méthode qui récupéra les données à partir du modèle, pour les envoyer à la vue.
 
 ### Faiblesses
 
 Il existe des difficultés à utiliser MVC avec le développement front-end moderne (frameworks fronts orientés composants).
-En cas d'utilisation d'outils tiers, peu de souplesse est laissée au programmeur.
+
+En cas d'utilisation d'outils tiers, peu de souplesse est laissé au programmeur.
 Les interactions entre les vues et les modèles sont bidirectionnelles et nombreuses, ce qui complique le développement.
 
 ## Pattern Decorator (Décorateur)
 
-Un décorateur permet de modifier d'ajouter des comportements à une classe, et ce dynamiquement, sans pour autant modifier son implémentation.
+Un décorateur permet de modifier ou d'ajouter des comportements à une classe, et ce dynamiquement, sans pour autant modifier son implémentation.
 Il englobe la classe dans une nouvelle classe qui implémente alors les nouveaux comportements. 
 
 Dans notre cas on aimerait créer des sandwichs avec des suppléments, sans le décorateur il faudrait créer une classe pour chaque combinaison de sandwich possible, ce qui est impossible à réaliser si les suppléments peuvent être infini.
@@ -83,7 +83,8 @@ Si on crée un singleton avec la méthode populaire de lazy loading
 ```CPP
 public static Singleton getInstance()
 {     
-    if (instance == null) {         
+    if (instance == null)
+    {         
         instance = new Singleton();
     }
     return instance;
@@ -104,11 +105,13 @@ Un singleton permet d'éviter de déconnecter/reconnecter un utilisateur à un s
 
 ### Décorateur
 
-Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet a intégralement été réalisé en JavaScript (qui ne possède pas d'interface), nous avons eu recours à des asctures permettant de simuler une classe abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
+Pour mettre en place ce pattern, nous avons besoin d'une interface contenant les méthodes que les décorateurs devront implémenter. Nous avons appelé celle-ci *ISandwich*. Étant donné que notre projet a intégralement été réalisé en JavaScript (qui ne possède pas d'interface), nous avons eu recours à des astuces permettant de simuler une classe abstraite. En effet, lors de la construction d'un objet implémentant *ISandwich*, il est nécessaire de contrôler l'existence des fonctions. L'extrait suivant démontre cela :
 
 ```js 
-class ISandwich {
-    constructor() {         
+class ISandwich 
+{
+    constructor()
+    {         
         // If the class that is instanciated is Component, throw an exception         
         if (this.constructor == ISandwich)
         {             
@@ -134,11 +137,13 @@ Cette classe/interface est implémentée par la classe *Ingredient*, qui doit al
 Par la suite, nous avons créé une classe *IngredientDeco*, qui possède, en plus des attributs de la classe *Ingredient*, le champ "sandwich", qui représente le sandwich qu'il décore. Cette classe doit redéfinir les deux méthodes ci-dessus, en appelant d'abord celles du fichier qu'il encapsule.
 
 ```js 
-calculatePrice() {
+calculatePrice()
+{
     return this.sandwich.calculatePrice() + this.price;
 }
 
-getNameAsList() {
+getNameAsList()
+{
     return this.sandwich.getNameAsList() + 'Nom : ' + this.name + ', Prix : '+ this.price +' CHF\n';
 }
 ```
@@ -157,8 +162,6 @@ painAvecSalade.getNameAsList();
 // Nom : Pain, Prix : 1.2 CHF // Nom : Salade, Prix : 0.5 CHF
 
 ```
-
-**Étoffer peut-être?**
 
 ### Singleton
 
@@ -203,11 +206,11 @@ class Storage
 ### MVC
 
 Premièrement, après avoir mis en place notre espace de stockage, nous nous sommes penchés sur la partie "Modèle".
-Afin d'obtenir le code le plus générique possible, nous avons créé une classe nommée *Model*. Celle-ci possède des méthodes statiques privées, telles que *save()*, *update()*, *delete()*, *fetch()*, ainsi que *fetchAll()*, qui seront utilisées dans nos modèles concrets.
+Afin d'obtenir le code le plus générique possible, nous avons créé une classe nommée *Model*. Celle-ci possède des méthodes statiques privées, telles que *save()*, *update()*, *delete()*, *fetch()*, ainsi que *fetchAll()*, qui seront utilisées dans nos modèles concrêts.
 
 Le premier modèle dont nous avons eu besoin fut le *Ingredient*, qui possède un nom ainsi qu'un prix en tant qu'attributs. Étant donné que notre application ne possède pas de gestion des ingrédients, et que ceux-ci sont stockés lors du lancement de l'application, nous n'avons pas eu besoin d'implémenter le CRUD en entier. Seules les méthodes *fetch()* et *fetchAll*, permettant de récupérer des ingrédients, ont été nécessaires.
 
-Par la suite, nous avons modifié notre classe *IngredientDeco* pour que celle-ci hérite également de la classe *Model*. Comme les décorateurs représentent un sandwich, contrairement au modèle *Ingredient*, et qu'un doit sandwich doit pouvoir être enregistré, il a été nécessaire d'implémenter toutes les fonctions du CRUD.
+Par la suite, nous avons modifié notre classe *IngredientDeco* pour que celle-ci hérite également de la classe *Model*. Comme les décorateurs représentent un sandwich, contrairement au modèle *Ingredient*, et qu'un sandwich doit pouvoir être enregistré, il a été nécessaire d'implémenter toutes les fonctions du CRUD.
 
 Maintenant que nos modèles principaux sont créés, nous pouvons passer à la phase suivante afin de tester s'ils fonctionnent correctement.
 
@@ -253,7 +256,7 @@ class SandwichController
 ...
 }
 ```
-La liste d'ingrédients est récupérée, comme expliquer précédemment, depuis le modèle correspondant.
+La liste d'ingrédients est récupérée, comme expliqué précédemment, depuis le modèle correspondant.
 
 Maintenant que les trois parties du MVC sont implémentées, nous avons besoin d'un mécanisme permettant d'instancier le bon controller et appeler sa bonne méthode, en fonction de la route (URI). Ceci est le principe d'un *routeur*.
 
@@ -261,10 +264,11 @@ Comme notre application doit être plug-and-play, nous avons choisi de ne pas ut
 
 L'astuce suivante a été utilisée afin de tout de même rendre le routage possible : la route est précisée dans un paramètre de l'URL, nommé *route*. En reprenant l'exemple précédent, l'URl devient alors *chemin/du/fichier/index.html&route=create_sandwich*, où la route est *create_sandwich*.
 
-Notre application est maintenant capable de récupérer la route, mais ne sait toujours pas quel controller utiliser. Il est nécessaire de stocker chaque route et son controller + méthode correspondante. Cela a été fait un fichier séparé, nommé *routes.js*, ayant la structure suivante :
+Notre application est maintenant capable de récupérer la route, mais ne sait toujours pas quel controller utiliser. Il est nécessaire de stocker chaque route et son controller + méthode correspondante. Cela a été fait dans un fichier séparé, nommé *routes.js*, ayant la structure suivante :
 
 ```js 
-const routes = {     
+const routes = 
+{     
     "index" : // Route     
     {
         "controller" : IndexController, // Controller         
@@ -293,9 +297,10 @@ const params = new URLSearchParams(window.location.search);
 let routeParam = params.get("route");
 
 // Si la route n'est pas définie dans le fichier "routes.js" 
-if(routes[routeParam] == undefined) {
-// Modifier la route pour "inconnue"     
-routeParam = "unknown";
+if(routes[routeParam] == undefined)
+{
+    // Modifier la route pour "inconnue"     
+    routeParam = "unknown";
 }
 
 // Récupérer le controller correspondant 
@@ -315,7 +320,7 @@ Pour intégrer les autres vues et controllers (CommandController p.e.), nous avo
 
 ## Conclusion
 Pour conclure, le projet remplit les objectifs que nous nous étions donnés. Le site permet de simuler une commande de sandwich en utilisant de manière intelligente les différents Design Pattern choisis. 
-Une problématique est que l'application est censée être en plug and play, ce qui rend impossible d'utiliser les outils vus pendant le cours d'application Web de Marc Schaeffer, comme DevServer et EasyPHP, nous avons donc opté pour simuler un router afin de quand même pouvoir avoir un site web avec des redirections sémantiques, pour parvenir à ce résultat. Afin de mettre en place ce modèle MVC nous nous sommes inspiré de l'implémentation de Tania Racsia sur GitHub.
+Une problématique est que l'application est censée être en plug and play, ce qui rend impossible d'utiliser les outils vus pendant le cours d'application Web de Marc Schaeffer, comme DevServer et EasyPHP. Nous avons donc opté pour simuler un router afin de quand même pouvoir avoir un site web avec des redirections sémantiques, pour parvenir à ce résultat. Afin de mettre en place ce modèle MVC nous nous sommes inspiré de l'implémentation de Tania Racsia sur GitHub.
 
 ## Références
 
